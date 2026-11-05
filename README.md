@@ -240,7 +240,8 @@ ShikshagrahaMIPTransformer/
 ├── docs/                         READ FIRST if you're new
 │   ├── README.md                 index
 │   ├── ux/                       who uses it, the end-to-end journey, decision points
-│   └── walkthroughs/             12 plain-language examples (01–12), each ending in a teacher card
+│   ├── walkthroughs/             12 plain-language examples (01–12), each ending in a teacher card
+│   └── regeneration-prompts.md   13 prompts to rebuild this project from scratch with an AI coding agent
 │
 ├── frameworks/                   THE METHOD: cards the prompts read
 │   ├── evidence-based-practices.md   Tier 1 practices + Tier 2 pilot cards (EB-*)

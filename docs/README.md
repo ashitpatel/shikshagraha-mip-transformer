@@ -33,6 +33,7 @@ Walkthroughs 9–12 show the four **evidence-based practices** added after the [
 Every walkthrough follows the same shape: **at a glance → the starting point → what it already does well → what was applied and why → what was deliberately not done and why → before/after → safety and fairness rules → teacher card → what to watch for**.
 
 ## Going deeper
+- Rebuild the whole project with an AI coding agent: [regeneration-prompts.md](regeneration-prompts.md)
 - Why each decision was made: [EXPLORATION.md](../EXPLORATION.md)
 - Technical versions of the examples (used for testing): [evals/golden/](../evals/golden/README.md)
 - The methods, as the tool reads them: [frameworks/evidence-based-practices.md](../frameworks/evidence-based-practices.md), [frameworks/connected-learning.md](../frameworks/connected-learning.md), [frameworks/pb-techniques.md](../frameworks/pb-techniques.md)
