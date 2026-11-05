@@ -1,0 +1,885 @@
+{
+  "_about": "Gate-eval fixtures: one baseline MIP per golden example, plus the owner context and the expected gate decisions. 'expected' is the primary answer from the golden example; 'acceptable' lists answers that are also defensible under the gate prompts' rules. Fixtures 1, 2 and 8 are SEEDS authored for this eval: the golden examples were written as new MIPs (generation mode), so their gate inputs are plain pre-transformation versions; fixture 8 re-targets the catalogue's 'School Exposure Visit' pattern to Class 8->9, because the catalogue has no such MIP. Baselines 3-7 follow the 'Baseline MIP' tables in evals/golden/*.md (paraphrased from the sources). The evidence_based gate (Tier 1 practices, frameworks/evidence-based-practices.md) was added later; its expected answers are this project's judgement and more of them allow two answers, because the plan-to-routine rule is new.",
+  "gates": [
+    "connected_learning",
+    "pb_process",
+    "pb_prioritise",
+    "pb_allocate",
+    "budget_capped_choice",
+    "evidence_based"
+  ],
+  "fixtures": [
+    {
+      "id": "1-civics-lab-seed",
+      "golden": "evals/golden/civics-lab.md",
+      "seed": true,
+      "context": "The SMC has approved a discretionary fund of Rs 20,000 for this term for improving a shared school space. It is not earmarked.",
+      "mip": {
+        "title": "Improving a shared school space with the student cabinet",
+        "domain": "Beneficiary Satisfaction",
+        "sub_category": "Learners personal & Social Development (Participation, SEL)",
+        "target_stakeholder": "HM",
+        "duration": "1 month",
+        "objective": "Improve one shared space in the school that students use every day",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Brief the student cabinet on the shared-space improvement and the available fund"
+          },
+          {
+            "seq": 2,
+            "name": "Cabinet members list problems they see in shared spaces (playground, corridors, library corner, toilets area)"
+          },
+          {
+            "seq": 3,
+            "name": "HM collects price quotes for the possible improvements"
+          },
+          {
+            "seq": 4,
+            "name": "HM decides which improvements to fund within the SMC-approved amount"
+          },
+          {
+            "seq": 5,
+            "name": "Procure items and complete the improvements"
+          },
+          {
+            "seq": 6,
+            "name": "Cabinet sets up a rota to look after the improved space"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "seed for evals/golden/civics-lab.md"
+        }
+      },
+      "expected": {
+        "connected_learning": "PARTIAL",
+        "pb_process": "APPLY",
+        "pb_prioritise": "APPLY",
+        "pb_allocate": "APPLY",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "ABSTAIN"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "PARTIAL",
+          "APPLY"
+        ],
+        "pb_process": [
+          "APPLY"
+        ],
+        "pb_prioritise": [
+          "APPLY",
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "APPLY"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "ABSTAIN",
+          "PARTIAL"
+        ]
+      }
+    },
+    {
+      "id": "2-time-knapsack-seed",
+      "golden": "evals/golden/time-knapsack.md",
+      "seed": true,
+      "context": "Each project team has 5 students with about 4 hours each before the deadline (20 team-hours in total). Teams usually want to build more than they can finish.",
+      "mip": {
+        "title": "Team projects in Class 10 science",
+        "domain": "Curriculum, Pedagogy & Assessment",
+        "sub_category": "Teaching learning processes",
+        "target_stakeholder": "Science teacher",
+        "duration": "1 month",
+        "objective": "Student teams complete a science project and submit it on time",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Announce the project topic, grading rubric and deadline"
+          },
+          {
+            "seq": 2,
+            "name": "Form teams of 5 students"
+          },
+          {
+            "seq": 3,
+            "name": "Teams list what they plan to build or present"
+          },
+          {
+            "seq": 4,
+            "name": "Teams work on the project in class and at home"
+          },
+          {
+            "seq": 5,
+            "name": "Check team progress once a week"
+          },
+          {
+            "seq": 6,
+            "name": "Teams submit and present their projects"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "seed for evals/golden/time-knapsack.md"
+        }
+      },
+      "expected": {
+        "connected_learning": "APPLY",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "APPLY",
+        "evidence_based": "ABSTAIN"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "APPLY",
+          "PARTIAL"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "APPLY"
+        ],
+        "evidence_based": [
+          "ABSTAIN",
+          "PARTIAL"
+        ]
+      }
+    },
+    {
+      "id": "3-slate-land1",
+      "golden": "evals/golden/slate-language-adventure.md",
+      "seed": false,
+      "context": "",
+      "mip": {
+        "title": "Run SLATE Land 1: Sound Island",
+        "domain": "Curriculum, Pedagogy & Assessment",
+        "sub_category": "Pedagogy and subject knowledge of learners (FLN)",
+        "target_stakeholder": "English teacher (with HT support)",
+        "duration": "6 weeks",
+        "objective": "At least 90% of each house's members know all English sounds by week 6",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Orient student house leaders on SLATE and the Land 1 routine"
+          },
+          {
+            "seq": 2,
+            "name": "House leaders run two 30-minute peer learning circles each week (Tuesday and Thursday)"
+          },
+          {
+            "seq": 3,
+            "name": "House members run class-wise sound sessions in their own classrooms"
+          },
+          {
+            "seq": 4,
+            "name": "Keep the house points board (points for each circle and class session held)"
+          },
+          {
+            "seq": 5,
+            "name": "At week 6, assess whether at least 90% of each house know all the sounds"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "commons#750 / Land 1 (derived)"
+        }
+      },
+      "expected": {
+        "connected_learning": "APPLY",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "APPLY"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "APPLY"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "APPLY",
+          "PARTIAL"
+        ]
+      }
+    },
+    {
+      "id": "4-playbook-august",
+      "golden": "evals/golden/learning-centre-playbook.md",
+      "seed": false,
+      "context": "The Learning Centre's stated purpose is to respond to students gradually disengaging from learning before they drop out.",
+      "mip": {
+        "title": "Learning Centre August block: Neighbourhood Explorer and Dream Job Map",
+        "domain": "Beneficiary Satisfaction",
+        "sub_category": "Learners personal & Social Development",
+        "target_stakeholder": "Learning Centre teacher-in-charge",
+        "duration": "4 weeks",
+        "objective": "Students connect learning to their surroundings and to future careers",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Prepare materials and the observation sheet"
+          },
+          {
+            "seq": 2,
+            "name": "Run the Dream Job Map activity and display the Dream Job Gallery"
+          },
+          {
+            "seq": 3,
+            "name": "Run the Neighbourhood Explorer activity"
+          },
+          {
+            "seq": 4,
+            "name": "Build the Neighbourhood Learning Wall from student findings"
+          },
+          {
+            "seq": 5,
+            "name": "Invite a local expert (e.g. a scientist, artist, doctor or entrepreneur) to talk with students"
+          },
+          {
+            "seq": 6,
+            "name": "Record student engagement in the observation framework"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "commons#753 / August block (derived)"
+        }
+      },
+      "expected": {
+        "connected_learning": "APPLY",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "ABSTAIN"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "APPLY"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "ABSTAIN",
+          "PARTIAL"
+        ]
+      }
+    },
+    {
+      "id": "5-sdp-process",
+      "golden": "evals/golden/school-development-plan.md",
+      "seed": false,
+      "context": "",
+      "mip": {
+        "title": "Drafting the School Development Plan",
+        "domain": "Management & Governance",
+        "sub_category": "Long term & short term (institution planning)/review process",
+        "target_stakeholder": "HM, with the SMC",
+        "duration": "1 month",
+        "objective": "Prepare a School Development Plan that sets priorities and actions to improve teaching and learning",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Hold a meeting or survey with teachers, SMC members and students to understand the school's needs"
+          },
+          {
+            "seq": 2,
+            "name": "Set the vision and mission using the guiding questions"
+          },
+          {
+            "seq": 3,
+            "name": "Analyse needs: enrolment, learning outcomes, leadership, stakeholder involvement, teaching practice, resources"
+          },
+          {
+            "seq": 4,
+            "name": "Draft the plan: challenge, SMART goal, solution, steps, timeline, owner, resources needed, monitoring"
+          },
+          {
+            "seq": 5,
+            "name": "Hold a review meeting with teachers, SMC members and students to finalise the plan"
+          },
+          {
+            "seq": 6,
+            "name": "Assign an in-charge for each intervention and monitor progress quarterly; update teachers and SMC monthly"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "commons#751 (derived)"
+        }
+      },
+      "expected": {
+        "connected_learning": "ABSTAIN",
+        "pb_process": "APPLY",
+        "pb_prioritise": "APPLY",
+        "pb_allocate": "CONDITIONAL",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "PARTIAL"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "ABSTAIN",
+          "PARTIAL"
+        ],
+        "pb_process": [
+          "APPLY",
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "APPLY"
+        ],
+        "pb_allocate": [
+          "CONDITIONAL"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "PARTIAL",
+          "APPLY"
+        ]
+      }
+    },
+    {
+      "id": "6-catalogue-school-resources",
+      "golden": "evals/golden/catalogue-school-resources.md",
+      "seed": false,
+      "context": "",
+      "mip": {
+        "title": "School resources",
+        "domain": "Access & Infrastructure",
+        "sub_category": "Physical Infrastructure",
+        "contributed_by": "Mantra4Change & ShikshaLokam",
+        "target_stakeholder": "HM",
+        "duration": "2 weeks",
+        "description": "The HM understands why good school resources matter",
+        "objective": "Improve the resources available in the school",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Assess the current resources and infrastructure in the school"
+          },
+          {
+            "seq": 2,
+            "name": "Detail the needs of the school"
+          },
+          {
+            "seq": 3,
+            "name": "Identify resources the community can support with"
+          },
+          {
+            "seq": 4,
+            "name": "List the requirements that need to be procured"
+          },
+          {
+            "seq": 5,
+            "name": "Share the list with the CRP"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "commons#259 / Access & Infra / School resources"
+        }
+      },
+      "expected": {
+        "connected_learning": "ABSTAIN",
+        "pb_process": "APPLY",
+        "pb_prioritise": "APPLY",
+        "pb_allocate": "CONDITIONAL",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "PARTIAL"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "ABSTAIN"
+        ],
+        "pb_process": [
+          "APPLY",
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "APPLY"
+        ],
+        "pb_allocate": [
+          "CONDITIONAL"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "PARTIAL",
+          "ABSTAIN"
+        ]
+      }
+    },
+    {
+      "id": "7-catalogue-real-world-projects",
+      "golden": "evals/golden/catalogue-real-world-projects.md",
+      "seed": false,
+      "context": "",
+      "mip": {
+        "title": "Real World Projects",
+        "domain": "Curriculum, Pedagogy & Assessment",
+        "sub_category": "Teaching learning processes / Pedagogy and subject knowledge of learners",
+        "target_stakeholder": "Maths teachers",
+        "duration": "1 month",
+        "objective": "Teachers use real-world projects in class to build practical application of maths and problem-solving skills",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Decide the concepts to cover"
+          },
+          {
+            "seq": 2,
+            "name": "Create a few projects on real-life problems aligned to the selected concepts"
+          },
+          {
+            "seq": 3,
+            "name": "Introduce the project and timelines to students"
+          },
+          {
+            "seq": 4,
+            "name": "Practise the concepts in class with students"
+          },
+          {
+            "seq": 5,
+            "name": "Support students on the project once a week in a class period"
+          },
+          {
+            "seq": 6,
+            "name": "Organise a project showcase by the students"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "commons#259 / Cur & Ped & Ass / Real World Projects"
+        }
+      },
+      "expected": {
+        "connected_learning": "APPLY",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "ABSTAIN"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "APPLY"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "ABSTAIN",
+          "PARTIAL"
+        ]
+      }
+    },
+    {
+      "id": "8-transition-class8-to-9-seed",
+      "golden": "evals/golden/transition-class8-to-9.md",
+      "seed": true,
+      "context": "This is an upper-primary school (Classes 1-8). Most Class 8 students move to one nearby government secondary school for Class 9.",
+      "mip": {
+        "title": "Class 8 exposure visit to the secondary school",
+        "domain": "Access & Infrastructure",
+        "sub_category": "Access",
+        "target_stakeholder": "HT of the upper-primary school, with the SMC",
+        "duration": "1 week",
+        "objective": "Class 8 students and their parents visit the secondary school where students will join Class 9, so the move feels familiar",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Identify the secondary school most Class 8 students will join"
+          },
+          {
+            "seq": 2,
+            "name": "Contact the secondary school's HM to schedule a visit"
+          },
+          {
+            "seq": 3,
+            "name": "Inform parents about the school and the visit"
+          },
+          {
+            "seq": 4,
+            "name": "Plan the visit"
+          },
+          {
+            "seq": 5,
+            "name": "Hold an interactive session with the secondary school's HM, teachers and students"
+          },
+          {
+            "seq": 6,
+            "name": "Take feedback from parents on the visit"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "seed re-targeted from commons#259 / Access & Infra / School Exposure Visit"
+        }
+      },
+      "expected": {
+        "connected_learning": "APPLY",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "ABSTAIN"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "APPLY",
+          "PARTIAL"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "ABSTAIN"
+        ]
+      }
+    },
+    {
+      "id": "9-catalogue-reading-by-level",
+      "golden": "evals/golden/catalogue-reading-by-level.md",
+      "seed": false,
+      "context": "Class 4-5 in a government school. Many children cannot yet read simple English words. The HM is willing to protect a daily period.",
+      "mip": {
+        "title": "Reading English",
+        "domain": "Curriculum, Pedagogy & Assessment",
+        "sub_category": "Pedagogy and subject knowledge of learners (FLN)",
+        "contributed_by": "ShikshaLokam",
+        "target_stakeholder": "English Teachers",
+        "duration": "1 month",
+        "objective": "Build reading skills among students",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Conduct reading activities to identify the reading levels of the class"
+          },
+          {
+            "seq": 2,
+            "name": "Conduct activities that focus on word recognition based on students' levels"
+          },
+          {
+            "seq": 3,
+            "name": "Engage students in activities where they read and understand sentences"
+          },
+          {
+            "seq": 4,
+            "name": "Organise an activity for students to demonstrate their reading skills creatively"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "commons#259 / Cur & Ped & Ass / Reading English"
+        }
+      },
+      "expected": {
+        "connected_learning": "APPLY",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "APPLY"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "APPLY",
+          "PARTIAL"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "APPLY"
+        ]
+      }
+    },
+    {
+      "id": "10-catalogue-tutoring-chaupal",
+      "golden": "evals/golden/catalogue-tutoring-chaupal.md",
+      "seed": false,
+      "context": "Many Class 3-5 children cannot read simple words. Some local youth and mothers are willing to help.",
+      "mip": {
+        "title": "Community Chaupal",
+        "domain": "Beneficiary Satisfaction",
+        "sub_category": "SMC & Community Engagement",
+        "contributed_by": "ShikshaLokam",
+        "target_stakeholder": "Head Teachers",
+        "duration": "2 weeks",
+        "objective": "To create spaces where community members and children come together and encourage learning",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Decide day/date to conduct community chaupal"
+          },
+          {
+            "seq": 2,
+            "name": "Identify the activities for community chaupal"
+          },
+          {
+            "seq": 3,
+            "name": "Call for community volunteers who can facilitate"
+          },
+          {
+            "seq": 4,
+            "name": "Assign the activities to different facilitators"
+          },
+          {
+            "seq": 5,
+            "name": "Inform parents and students about community chaupal through the WhatsApp group"
+          },
+          {
+            "seq": 6,
+            "name": "Start the session by setting context and then invite facilitators to start the activity"
+          },
+          {
+            "seq": 7,
+            "name": "Take feedback on the session from parents and students through WhatsApp"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "commons#259 / Beneficiary Satisfaction / Community Chaupal"
+        }
+      },
+      "expected": {
+        "connected_learning": "PARTIAL",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "APPLY"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "PARTIAL",
+          "APPLY"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "APPLY"
+        ]
+      }
+    },
+    {
+      "id": "11-catalogue-letters-and-sounds",
+      "golden": "evals/golden/catalogue-letters-and-sounds.md",
+      "seed": false,
+      "context": "Class 1-2. Few devices (two shared phones). Children are early in learning letters.",
+      "mip": {
+        "title": "Letters and Words",
+        "domain": "Curriculum, Pedagogy & Assessment",
+        "sub_category": "Teaching learning processes",
+        "contributed_by": "ShikshaLokam",
+        "target_stakeholder": "English/FLN Teacher",
+        "duration": "1 Month",
+        "objective": "Teachers will be able to use the Read-Along app to teach letters and words",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Search the Read-Along app to identify activities for phonics (word time)"
+          },
+          {
+            "seq": 2,
+            "name": "Create a one-month plan for conducting activities"
+          },
+          {
+            "seq": 3,
+            "name": "Divide the class into small groups"
+          },
+          {
+            "seq": 4,
+            "name": "Create a score chart for presenting group-wise scores and progress"
+          },
+          {
+            "seq": 5,
+            "name": "Conduct activities based on the designed plan"
+          },
+          {
+            "seq": 6,
+            "name": "Calculate total score at the end of the month"
+          },
+          {
+            "seq": 7,
+            "name": "Reflect on students' progress"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "commons#259 / Cur & Ped & Ass / Letters and Words"
+        }
+      },
+      "expected": {
+        "connected_learning": "APPLY",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "APPLY"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "APPLY",
+          "PARTIAL"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "APPLY"
+        ]
+      }
+    },
+    {
+      "id": "12-catalogue-observation-fidelity-loop",
+      "golden": "evals/golden/catalogue-observation-fidelity-loop.md",
+      "seed": false,
+      "context": "NIPUN Bharat FLN teacher guides and workbooks are in daily use in Classes 1-3.",
+      "mip": {
+        "title": "School observation and feedback for teachers",
+        "domain": "Management & Governance",
+        "sub_category": "Long term & short term (institution planning)/review process",
+        "contributed_by": "ShikshaLokam",
+        "target_stakeholder": "HMs",
+        "duration": "2 Weeks",
+        "objective": "HM observes and gives feedback to their teachers",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Prepare and engage in school observation"
+          },
+          {
+            "seq": 2,
+            "name": "Write down 2 ideas on how to include non-violent communication and active listening in your next conversation with staff"
+          },
+          {
+            "seq": 3,
+            "name": "Discuss with 1 teacher about students' performance based on these ideas"
+          },
+          {
+            "seq": 4,
+            "name": "Note down feedback points for the teacher"
+          },
+          {
+            "seq": 5,
+            "name": "Note down 2 techniques on how you want to give the feedback"
+          },
+          {
+            "seq": 6,
+            "name": "Give feedback to more teachers regarding their students' performance"
+          },
+          {
+            "seq": 7,
+            "name": "Write your reflections on the feedback process on DIKSHA"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "commons#259 / Management & Governance / School observation and feedback for teachers"
+        }
+      },
+      "expected": {
+        "connected_learning": "ABSTAIN",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "APPLY"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "ABSTAIN"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "APPLY",
+          "CONDITIONAL"
+        ]
+      }
+    }
+  ]
+}
