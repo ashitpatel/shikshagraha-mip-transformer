@@ -36,7 +36,7 @@
 ### EB-scope — when the evidence-based cards apply
 - **Gate test:** does the MIP aim at (a) foundational reading or maths, (b) children behind their grade level, or (c) a head-teacher planning, management or procurement task that could produce a classroom routine?
 - **Decisions, evaluated in this order (first match wins):**
-  1. (a) or (b) → **APPLY** with the Tier 1 cards whose preconditions are confirmed (and whose non-negotiables fit). If none is confirmed but a precondition is unknown (children behind? a protected slot? volunteers? state lesson guides in use?) → **CONDITIONAL**: ask, don't guess.
+  1. (a), (b), or a teaching-practice MIP (observation, feedback, coaching) in classes where state lesson guides are used → **APPLY** with the Tier 1 cards whose preconditions are confirmed (and whose non-negotiables fit). If none is confirmed but a precondition is unknown (children behind? a protected slot? volunteers? state lesson guides in use?) → **CONDITIONAL**: ask, don't guess.
   2. Regular subject teaching where a Tier 2 card fits → **PARTIAL (pilot)**, never instead of a fitting Tier 1 card.
   3. (c) **and the MIP's objective concerns learning or teaching** → **PARTIAL** with `EB-plan-to-routine`.
   4. Otherwise → **ABSTAIN**: engagement, civic participation, HR, events, and infrastructure or resources for their own sake, including planning MIPs whose objective isn't learning.

@@ -14,7 +14,7 @@ You decide whether, and how narrowly, Connected Learning should be applied to th
    - It's present, the owner is an HM or SMC, and `students_core == false` (student participation is incidental, e.g. a survey or a care rota) → **PARTIAL** (at most one target principle).
    - Otherwise, continue.
 2. For each principle card, read `already_present`. Principles that are already strong are **not targets**.
-3. Choose **at most 3 target principles** where (a) the gap is real, and (b) an *allowed edit* on that card can close it within the MIP's existing tasks, plus at most 2 added tasks.
+3. Choose **at most 3 target principles** where (a) the gap is real, and (b) an *allowed edit* on that card can close it within the MIP's existing tasks, plus at most 2 added tasks. If more than 3 qualify, prefer edits that change existing tasks over added ones; if still tied, prefer this order: interests, peers, connections across settings, relationships, production/audience, shared purpose, opportunities, ecosystem cards.
 4. If no principle meets both conditions → **ABSTAIN** with the reason "already strong" or "no feasible edit".
 5. If `foundational_literacy_numeracy == true`, record the constraint: **augment only (CL-G1)**.
 6. Note any `risk_flags` relevant to the targets (e.g. adult visitors → CL-G5). If `child-level tracking outside school` is flagged, add the constraint "remove or replace with an asset map (CL-G9)", whatever the decision.

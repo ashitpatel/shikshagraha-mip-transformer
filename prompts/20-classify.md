@@ -29,14 +29,15 @@ Return **only**:
   "volunteers_available": "yes | no | unknown (community volunteers or trained older pupils in school hours)",
   "constituency": {
     "present": false,
-    "who": "e.g. SMC members; students of Classes 6–8; none"
+    "who": "e.g. SMC members; students of Classes 6–8; none",
+    "collective_decision": "true if the MIP contains a decision that is legitimately collective (see Rules), even if the MIP has one person deciding it"
   },
   "shared_resource": {
     "kind": "none | money | space | materials | time_own_team",
     "amount_confirmed": "yes | no | unknown",
     "amount": null,
     "source": "unknown",
-    "choice_among_costed_items": "true only if the MIP chooses among costed items for a shared purpose (a procurement list, improvement options); false for event logistics or routine running costs"
+    "choice_among_costed_items": "true only if the MIP chooses among costed or costable items for a shared purpose (a procurement list, improvement options, or a school development or improvement plan whose actions carry resource costs); false for event logistics or routine running costs"
   },
   "competing_options": {
     "count": 0,
@@ -66,7 +67,7 @@ Return **only**:
     "EB-fidelity-loop": "",
     "EB-measure": ""
   },
-  "risk_flags": ["children's images", "adult visitors", "physical work by students", "money handled by students", "sensitive household data", "child-level tracking outside school", "device dependence"],
+  "risk_flags": ["children's images", "adult visitors", "physical work by students", "money handled by students", "sensitive household data", "child-level tracking outside school", "off-site visit", "device dependence"],
   "transition_year": "none | Class 5→6 | Class 8→9 | other: <describe> | unknown",
   "size": { "duration_weeks": 4, "task_count": 6 }
 }
@@ -75,6 +76,7 @@ Return **only**:
 ## Rules
 - `already_present` must cite task numbers. Write `"none"` when absent; don't stretch (a teacher-made display isn't student production).
 - `risk_flags` lists only risks **present in the MIP as written**.
+- A decision is **legitimately collective** when it belongs, by role or law, to a group: competing school needs or uses of shared money, space or materials (the SMC, under the RTE Act), or a school-wide or class-wide student choice. This holds **even if the MIP as written has one person deciding**. It is **not** collective when a team or staff group decides about its own work or event, or when an HM chooses specific items within a purpose already agreed (e.g. which library books to buy with a library budget). When `collective_decision` is true, set `constituency.present` to true and name the group that should hold it.
 - Use `unknown` whenever the MIP and context don't say. Don't guess; the fit checks turn unknown preconditions into questions for the owner.
 - Convert `duration` to weeks (1 month = 4; "15 days" = 2; round up).
 - Card IDs refer to `frameworks/connected-learning.md`, `frameworks/pb-techniques.md` and `frameworks/evidence-based-practices.md`.

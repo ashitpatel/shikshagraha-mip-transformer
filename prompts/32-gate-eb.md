@@ -12,7 +12,7 @@ You decide whether one of the four Tier 1 evidence-based practices, or the plan-
 ## Decision procedure
 Evaluate **in this order** and stop at the first branch that produces a decision.
 
-1. **Foundational or behind:** `foundational_literacy_numeracy == true` or `below_grade_level == "yes"` → consider the **Tier 1** practice cards. Pick **at most 2** whose preconditions are confirmed:
+1. **Foundational, behind, or teaching practice with state guides:** `foundational_literacy_numeracy == true`, or `below_grade_level == "yes"`, or the MIP is about classroom teaching practice (observation, feedback, coaching) and `state_materials_in_use == "yes"` → consider the **Tier 1** practice cards. Pick **at most 2** whose preconditions are confirmed:
    - `EB-level-grouping`: `below_grade_level == "yes"` and `protected_slot_feasible == "yes"`;
    - `EB-tutoring`: `below_grade_level == "yes"` and `volunteers_available == "yes"`;
    - `EB-akshara`: early reading (Classes 1–3) or non-readers (no other precondition);
@@ -39,6 +39,7 @@ Return **only**:
     "reason": "one or two sentences grounded in the classification",
     "cards": ["EB-level-grouping", "EB-measure"],
     "tier": 1,
+    "_tier_note": "1 or 2 for practice cards; null for EB-plan-to-routine (a rule, not a practice)",
     "condition": ""
   },
   "open_questions": ["Can the HM protect a fixed daily slot?"],

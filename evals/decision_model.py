@@ -60,7 +60,7 @@ def gate_eb(f: dict) -> tuple[str, list[str]]:
     plan-to-routine only for learning objectives (F2 fix)."""
     notes = []
     # Step 1: foundational or behind -> Tier 1 cards with confirmed preconditions
-    if f["foundational"] or f["below_level"] == "yes":
+    if f["foundational"] or f["below_level"] == "yes" or (f.get("teaching_practice") and f["state_materials"] == "yes"):
         confirmed, unknown = [], []
         def check(card, conds):
             vals = [f[c] if isinstance(f[c], str) else ("yes" if f[c] else "no") for c in conds]

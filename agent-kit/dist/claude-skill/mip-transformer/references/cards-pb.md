@@ -43,7 +43,7 @@ Participatory budgeting is a process in which **members of a constituency direct
 
 ### PB-prioritise — approval or ranked voting on needs or options
 - **Means:** each participant ticks every option they support (approval) or orders them (ranked) [P2]. No costs are needed.
-- **Gate test:** are there ≥2 competing needs or options, and is the decision legitimately collective?
+- **Gate test:** are there ≥2 competing needs or options, and is the decision legitimately collective? A decision is **legitimately collective** when it belongs, by role or law, to a group: competing school needs or uses of shared money, space or materials (the SMC, under the RTE Act), or a school-wide or class-wide student choice. This holds **even if the MIP as written has one person deciding**. It is **not** collective when a team or staff group decides about its own work or event, or when an HM chooses specific items within a purpose already agreed (e.g. which library books to buy with a library budget).
 - **Allowed edits:** add one ballot step before a decision task; show the tally visibly (chart paper); record the agreed order in the minutes.
 - **Anti-patterns:** a ballot after the decision is already made; secret tallies; letting a ballot override the SMC's agreement process.
 - **Supportable claims:** "Approval voting lets each participant support several options and shows the group's spread of priorities before discussion." "Approval and ranked ballots are among the methods supported by the Stanford PB platform."

@@ -175,3 +175,89 @@ Two edge cases changed for the better:
 Fixture 6 ("School resources") now expects EB ABSTAIN, because its objective is resources, not learning; PARTIAL remains acceptable if the owner frames the books or materials as serving learning. The three edge MIPs E1, E6 and E8 were added to `evals/gate_fixtures.json` as fixtures 13–15, so the live test covers them. The live test is now 60 calls.
 
 **Still not verified:** whether a live model applies the fixed rules as the executable model does. Run `python3 evals/run_gates.py`.
+
+---
+
+## 8. Live test of the fixed rules (6 November 2026)
+
+**Method.** No API key was available, so the fit-check stage was run with **15 fresh Claude agents in this session**, one per test input in `evals/gate_fixtures.json`.
+- **Inputs:** each agent received only the plan and its context, written to answer-free input files.
+- **Files allowed:** only `prompts/20-classify.md`, `30-gate-cl.md`, `31-gate-pb.md`, `32-gate-eb.md` and the three card files. Agents were barred from every file holding expected answers.
+- **Steps:** each agent followed the classify prompt and then the three fit-check prompts exactly, and wrote JSON.
+- **Scoring:** `evals/score_runs.py` scored the outputs against the expected and acceptable decisions (outputs are in `evals/runs/20261106-agents/`, which isn't committed).
+
+This tests whether a Claude model applies the written rules. It doesn't test other assistants or free tiers.
+
+**Results:**
+
+| Fixture | connected_learning | pb_process | pb_prioritise | pb_allocate | budget_capped_choice | evidence_based |
+|---|---|---|---|---|---|---|
+| 1-civics-lab-seed | ✔ PARTIAL | ✔ APPLY | ✔ APPLY | ✔ APPLY | ✔ ABSTAIN | ✔ ABSTAIN |
+| 2-time-knapsack-seed | ✔ APPLY | ✔ ABSTAIN | ✘ APPLY (exp ABSTAIN) | ✔ ABSTAIN | ✔ APPLY | ✔ ABSTAIN |
+| 3-slate-land1 | ✔ APPLY | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ APPLY |
+| 4-playbook-august | ✔ APPLY | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN |
+| 5-sdp-process | ✔ ABSTAIN | ~ ABSTAIN (exp APPLY) | ✔ APPLY | ✘ ABSTAIN (exp CONDITIONAL) | ✔ ABSTAIN | ✔ PARTIAL |
+| 6-catalogue-school-resources | ✔ ABSTAIN | ~ ABSTAIN (exp APPLY) | ✘ ABSTAIN (exp APPLY) | ✘ ABSTAIN (exp CONDITIONAL) | ✔ ABSTAIN | ✔ ABSTAIN |
+| 7-catalogue-real-world-projects | ✔ APPLY | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ~ PARTIAL (exp ABSTAIN) |
+| 8-transition-class8-to-9-seed | ✔ APPLY | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN |
+| 9-catalogue-reading-by-level | ✔ APPLY | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ APPLY |
+| 10-catalogue-tutoring-chaupal | ~ APPLY (exp PARTIAL) | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ APPLY |
+| 11-catalogue-letters-and-sounds | ✔ APPLY | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ APPLY |
+| 12-catalogue-observation-fidelity-loop | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ APPLY |
+| 13-edge-library-books-no-group | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ~ APPLY (exp ABSTAIN) | ✔ PARTIAL |
+| 14-catalogue-teacher-motivation | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN |
+| 15-catalogue-teacher-mela | ✔ ABSTAIN | ✔ ABSTAIN | ~ APPLY (exp ABSTAIN) | ✔ ABSTAIN | ✔ ABSTAIN | ✔ ABSTAIN |
+
+**Exact:** 80/90 (89%) · **Acceptable:** 86/90 (96%) · **Outside:** 4
+
+**Exact: 80/90 (89%). Acceptable: 86/90 (96%). Outside: 4.**
+
+**What the misses showed** (from the agents' classification and reasons):
+
+| # | Miss | Root cause | Fix (applied) |
+|---|---|---|---|
+| R1 | Team projects: priority vote APPLY for a 5-student team | "Legitimately collective" was read as *any* group, including a team deciding its own work | `collective_decision` is now defined in `20-classify`, `31-gate-pb`, the `PB-prioritise` card and the agent kit. It means the decision belongs by role or law to a group (school needs or shared money, space or materials → SMC; class or school-wide student choices). It holds even if one person currently decides. It excludes a team's or staff group's own work, and an HM's item choices within an agreed purpose. |
+| R2 | School resources: priority vote ABSTAIN, budget ballot ABSTAIN (expected APPLY and CONDITIONAL) | The opposite reading: "collective" was taken to mean *currently decided by a group*, so the HM-only plan had no constituency, and F1's "someone must vote" then blocked the ballot | Same definition: competing school needs belong to the SMC even when the plan has the HM deciding alone, and the constituency is then the SMC |
+| R3 | School Development Plan: budget ballot ABSTAIN (expected CONDITIONAL) | The definition of "choice among costed items" didn't mention development plans whose actions carry resource costs | The definition now includes "a school development or improvement plan whose actions carry resource costs" |
+
+**Near-misses fixed at the same time:**
+- **Lesson observation:** the agent reached the right answer (the feedback loop on state lesson guides) only through the planning branch, because the loop could be entered only via "foundational or behind". Step 1 now also triggers for **teaching-practice MIPs (observation, feedback, coaching) in classes using state guides**. Updated in `32-gate-eb`, `EB-scope`, the agent kit and the decision model.
+- **The `tier` field for plan-to-routine** was set to 1 by one agent and left empty by another. It's now specified as null (plan-to-routine is a rule, not a practice).
+- **Choosing Connected Learning targets** had no tie-break when more than 3 qualified. Added: prefer edits to existing tasks, then a fixed principle order.
+- **An "off-site visit" risk flag** was improvised by one agent. It's now in the classify list.
+
+**Acceptable alternatives worth watching** (not errors):
+- Chaupal: CL APPLY rather than PARTIAL.
+- Real World Projects: a Tier 2 pilot.
+- Library books: budget-capped reasoning.
+- Teacher mela: a group vote (now excluded by the R1 definition, since it's a staff group's own event).
+
+**Size note:** the agent-kit instructions are now 7,997 characters, just under the 8,000-character limit. Further additions will need trimming elsewhere.
+
+### Round 2: re-run of the affected inputs
+
+Six fresh agents re-ran inputs 2, 5, 6, 12, 13 and 15 under the same blind conditions (outputs in `evals/runs/20261106-agents-r2/`).
+
+| Fixture | CL | PB process | PB vote | PB allocate | Budget-capped | EB |
+|---|---|---|---|---|---|---|
+| 2 Team projects | ✔ | ✔ | ✔ ABSTAIN *(was ✘)* | ✔ | ✔ | ✔ |
+| 5 School Development Plan | ✔ | ✔ APPLY *(was ~)* | ✔ | ✔ CONDITIONAL *(was ✘)* | ✔ | ✔ |
+| 6 School resources | ✔ | ✔ APPLY *(was ~)* | ✔ APPLY *(was ✘)* | ✔ CONDITIONAL *(was ✘)* | ✔ | ✔ |
+| 12 Lesson observation | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ APPLY (now via step 1 directly) |
+| 13 Library books | ✔ | ✔ | ✔ | ✔ | ~ APPLY | ✔ |
+| 15 Teacher mela | ✔ | ✔ | ✔ ABSTAIN *(was ~)* | ✔ | ✔ | ✔ |
+
+**Round 2: 35/36 exact, 36/36 acceptable.** All four misses are fixed. The lesson-observation case now reaches the feedback loop through the intended route: the agent cited "a teaching-practice MIP … with state guides in use", not the planning branch.
+
+**Latest result across all 15 inputs** (round-1 outputs for the 9 unaffected inputs plus the round-2 outputs; `evals/runs/20261106-combined/`):
+- **87/90 decisions exact (97%), 90/90 acceptable (100%), 0 outside.**
+- The three remaining non-exact decisions are acceptable alternatives:
+  - Chaupal: CL APPLY rather than PARTIAL.
+  - Real World Projects: an EB Tier 2 pilot.
+  - Library books: budget-capped reasoning.
+
+**Caveats:**
+- **One run per input.** Model decisions vary between runs, so repeat runs would show how stable they are.
+- **Only Claude was tested.** Behaviour in ChatGPT, Gemini or free tiers hasn't been checked.
+- **Unaffected inputs weren't re-run.** The nine inputs not re-run were scored on round-1 wording. The round-2 changes were narrow (the collective-decision and costed-plan definitions, the fidelity-loop entry, a tie-break and a risk flag), but those inputs weren't re-run under them.
+- **Only the fit-check stage was tested.** Transform, critic and render weren't run.
