@@ -20,7 +20,7 @@ Return the baseline MIP unchanged, with `x_transform.gates` filled in, and the n
 3. **Budget of change:**
    - **≤2 added tasks**, **≤9 tasks total**, **≤8 weeks**. Duration may grow by at most 1 week, unless a gate requires a meeting that can't fit.
    - **No new paid inputs** unless `pb_allocate` is APPLY.
-   - If the design can't fit, keep the most valuable edits and list the rest under `deferred_ideas` (suggestions for chained follow-on MIPs). **Priority when the budget is tight:** EB non-negotiables first (strongest evidence), then PB steps, then CL additions.
+   - If the design can't fit, keep the most valuable edits and list the rest under `deferred_ideas` (suggestions for chained follow-on MIPs). **Priority when the budget is tight:** (1) EB **Tier 1** non-negotiables; (2) the method that serves the MIP's stated objective (e.g. PB for a shared-space improvement, CL for a projects MIP); (3) other PB steps; (4) Tier 2 pilots; (5) other CL additions. Record every method a gate applied but you couldn't fit by setting `deferred: true` on that gate in `x_transform.gates`, and list it in `deferred_ideas`.
 4. **Keep the objective:** keep the original objective text, and append any addition as "*Added:* …". In foundational literacy or numeracy MIPs, never remove or shorten skill practice or mastery checks (CL-G1).
 5. **Owner stays an adult:** `target_stakeholder` is unchanged. Students get roles inside tasks.
 6. **Each task's `x_transform`:**

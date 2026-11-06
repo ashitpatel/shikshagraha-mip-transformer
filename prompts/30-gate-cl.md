@@ -11,7 +11,7 @@ You decide whether, and how narrowly, Connected Learning should be applied to th
 ## Decision procedure
 1. Apply **`CL-scope`**:
    - `student_learning_experience.present == false` → **ABSTAIN**. Stop.
-   - It's present, but the owner is an HM/SMC and students appear in only one task that could be designed as learning → **PARTIAL** (at most one target principle).
+   - It's present, the owner is an HM or SMC, and `students_core == false` (student participation is incidental, e.g. a survey or a care rota) → **PARTIAL** (at most one target principle).
    - Otherwise, continue.
 2. For each principle card, read `already_present`. Principles that are already strong are **not targets**.
 3. Choose **at most 3 target principles** where (a) the gap is real, and (b) an *allowed edit* on that card can close it within the MIP's existing tasks, plus at most 2 added tasks.

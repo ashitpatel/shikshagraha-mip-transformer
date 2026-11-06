@@ -50,7 +50,7 @@ Participatory budgeting is a process in which **members of a constituency direct
 
 ### PB-allocate-knapsack — knapsack ballot within a fixed amount
 - **Means:** each voter picks projects whose costs add up to no more than the real budget, so trade-offs are explicit [P1].
-- **Gate test:** is there a **confirmed, discretionary amount** (₹ or another hard cap) **and** ≥2 costed options that together exceed it?
+- **Gate test:** is there a **group that decides** (the PB process or a priority vote applies), a **confirmed, discretionary amount** (₹ or another hard cap), **and** ≥2 costed options that together exceed it? With no group, there's no ballot.
 - **Allowed edits:** a costed proposal list plus a knapsack ballot (paper: a running-total column checked at the desk; digital: [P2]), with the counting rule stated beforehand (`PB-count-greedy`).
 - **Anti-patterns:** using it when there's no confirmed amount; costs nobody has checked; earmarked funds treated as discretionary.
 - **Supportable claims:** "A knapsack ballot asks each voter to stay within the real budget, so voters weigh costs and trade-offs themselves." "Knapsack voting was proposed and studied by the Stanford Crowdsourced Democracy Team." "Knapsack voting was used as the official ballot in Boston's 2016 youth participatory budgeting election (Youth Lead the Change)." [P1]

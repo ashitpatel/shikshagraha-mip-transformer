@@ -30,7 +30,7 @@ DIST = KIT / "dist"
 
 LIMITS = {
     "core_instructions_chars": 8000,    # ChatGPT custom-GPT instruction box (tightest common limit)
-    "paste_lite_chars": 22000,          # ~5.5k tokens; for free tiers with modest context windows
+    "paste_lite_chars": 24000,          # ~6k tokens; for free tiers with modest context windows
     "skill_md_lines": 500,              # Agent Skills guidance for SKILL.md body size
 }
 
@@ -222,11 +222,16 @@ def main() -> int:
         for label, text in (("paste-lite", paste_lite), ("reviewer", reviewer_paste), ("paste-full", paste_full)):
             if cid not in text:
                 problems.append(f"{cid} missing from {label}")
-    for n in range(1, 21):
+    for n in range(1, 22):
         if f"| C{n} |" not in checklist:
             problems.append(f"C{n} missing from review checklist")
         if f"- C{n} [" not in paste_lite:
             problems.append(f"C{n} missing from paste-lite")
+    m_core = re.search(r"checks C1–C(\d+)", core)
+    n_checklist = len(re.findall(r"^\| C\d+ \|", checklist, flags=re.M))
+    if not m_core or int(m_core.group(1)) != n_checklist:
+        problems.append(f"core instructions name checks C1–C{m_core.group(1) if m_core else '?'} "
+                        f"but the checklist has {n_checklist}")
     if any(len(t) < 20 for t in re.findall(r"Can say: (\"[^\"]*\")", eb_compact + cl_compact + pb_compact)):
         problems.append("a compact card lost its supportable claim")
     critic = read(ROOT / "prompts" / "50-critic.md")

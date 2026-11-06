@@ -27,7 +27,7 @@ resource text ──► 15-derive ┘                 31-gate-pb ─┼─► 40
 | [31-gate-pb](31-gate-pb.md) | MIP + facts + PB cards | Four decisions: process, prioritise, allocate, budget-capped choice | Allocation needs a confirmed amount |
 | [32-gate-eb](32-gate-eb.md) | MIP + facts + EB cards | APPLY / PARTIAL / CONDITIONAL / ABSTAIN, ≤2 practice cards + measurement | Only with all non-negotiables; Tier 1 of the evidence ranking |
 | [40-transform](40-transform.md) | Baseline + gates + cards (+ critic feedback) | Transformed MIP + change log + open questions | ≤2 added tasks; supportable claims only |
-| [50-critic](50-critic.md) | Baseline + transform + gates + cards + schema errors | PASS / REVISE / REJECT, with issues C1–C20 | Independent; no rewriting |
+| [50-critic](50-critic.md) | Baseline + transform + gates + cards + schema errors | PASS / REVISE / REJECT, with issues C1–C21 | Independent; no rewriting |
 | [60-render](60-render.md) | Final MIP | Catalogue row, teacher card, improvement-story stub | No content changes |
 
 ## Shared context

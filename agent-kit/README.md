@@ -1,6 +1,6 @@
 # MIP Transformer: Agent Kit
 
-Run the MIP Transformer in **any AI chat assistant** (Claude, ChatGPT, Gemini, Copilot and others), including **free tiers**. Nothing to install, no Python, no API key. You paste or upload a Micro-Improvement Project (MIP) from Shikshagraha Commons. The assistant checks which methods fit (evidence-based practices, Connected Learning, participatory budgeting), revises the MIP only where they do, reviews its own work against 20 checks, and gives you one-page teacher cards for the original and the revised plan.
+Run the MIP Transformer in **any AI chat assistant** (Claude, ChatGPT, Gemini, Copilot and others), including **free tiers**. Nothing to install, no Python, no API key. You paste or upload a Micro-Improvement Project (MIP) from Shikshagraha Commons. The assistant checks which methods fit (evidence-based practices, Connected Learning, participatory budgeting), revises the MIP only where they do, reviews its own work against 21 checks, and gives you one-page teacher cards for the original and the revised plan.
 
 > **Status: untested.** These packages were assembled from the project's reviewed method (cards, checklist, prompts), but **no one has run them on any assistant yet**. Results will vary by assistant and by free-tier model. Before relying on the output, try it on one of the [walkthrough MIPs](../docs/walkthroughs/) and compare. Platform details below come from secondary sources as of November 2026 and change often; check each provider's current help pages.
 
@@ -8,8 +8,8 @@ Run the MIP Transformer in **any AI chat assistant** (Claude, ChatGPT, Gemini, C
 
 | Your situation | Use | Where |
 |---|---|---|
-| **Any free chat** (ChatGPT Free, Gemini, Claude Free, Copilot, Meta AI, Google AI Studio…) with a large context window | **One paste, full**: paste it as your first message | [dist/paste/mip-transformer-full.md](dist/paste/mip-transformer-full.md) (~15.6k tokens) |
-| **A free chat with a small context window**, or if the full version gets cut off or ignored | **One paste, lite**: compact cards and checklist | [dist/paste/mip-transformer-lite.md](dist/paste/mip-transformer-lite.md) (~5.4k tokens; Tier 2 pilot cards left out) |
+| **Any free chat** (ChatGPT Free, Gemini, Claude Free, Copilot, Meta AI, Google AI Studio…) with a large context window | **One paste, full**: paste it as your first message | [dist/paste/mip-transformer-full.md](dist/paste/mip-transformer-full.md) (~16k tokens) |
+| **A free chat with a small context window**, or if the full version gets cut off or ignored | **One paste, lite**: compact cards and checklist | [dist/paste/mip-transformer-lite.md](dist/paste/mip-transformer-lite.md) (~5.7k tokens; Tier 2 pilot cards left out) |
 | You want a **saved assistant** you can reuse and share | **Custom assistant**: instructions plus knowledge files | [dist/custom-assistant/](dist/custom-assistant/) |
 | **Claude** with Skills enabled (claude.ai or Claude Code) | **Claude Skill** | [dist/claude-skill/mip-transformer/](dist/claude-skill/mip-transformer/) |
 | You want an **independent second opinion** on a revised MIP | **Reviewer paste**: use it in a *fresh* chat | [dist/paste/mip-reviewer.md](dist/paste/mip-reviewer.md) |
@@ -56,7 +56,7 @@ After you get a revised MIP, open a **fresh** chat (or a different assistant), p
 3. It shows the starting plan as a table for you to confirm.
 4. It says what fits, in plain words. "Doesn't apply" is a normal answer; you then get the original teacher card.
 5. It shows a task-by-task revision with reasons.
-6. It reviews against 20 checks and fixes failures.
+6. It reviews against 21 checks, including whether the right methods were chosen, and fixes failures.
 7. It gives you the revised and original teacher cards, a "what changed and why" table, open questions, and the attribution.
 
 ## Limits to know
@@ -75,8 +75,8 @@ python3 agent-kit/build.py
 ```
 
 The build checks:
-- the instruction size (≤8,000 characters) and the lite size (≤22,000 characters);
-- that every card ID and checks C1–C20 appear in every package;
+- the instruction size (≤8,000 characters) and the lite size (≤24,000 characters);
+- that every card ID and checks C1–C21 appear in every package, and that the number of checks named in the instructions matches the checklist;
 - that every compact card keeps a supportable claim;
 - that the checklist has the same number of checks as `prompts/50-critic.md`.
 

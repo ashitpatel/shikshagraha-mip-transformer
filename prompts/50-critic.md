@@ -6,11 +6,12 @@ You're an independent reviewer. You don't rewrite the MIP; you **find violations
 ## Inputs
 - `{{BASELINE_MIP_JSON}}`
 - `{{TRANSFORM_OUTPUT_JSON}}` (from `40-transform`)
+- `{{CLASSIFICATION_JSON}}` (from `20-classify`, for C21)
 - `{{GATES_JSON}}`
 - `{{CL_CARDS}}`, `{{PB_CARDS}}`, `{{EB_CARDS}}`
 - `{{SCHEMA_ERRORS}}`: the result of machine validation against `schema/mip.schema.json` (empty if valid)
 
-## Checks (run all 20; each has an ID)
+## Checks (run all 21; each has an ID)
 | ID | Check | Severity |
 |---|---|---|
 | C1 | `{{SCHEMA_ERRORS}}` is empty | blocker |
@@ -33,6 +34,7 @@ You're an independent reviewer. You don't rewrite the MIP; you **find violations
 | C18 | Attribution line present with source_ref and licence | minor |
 | C19 | No child-level tracking outside school: no task collects, records or analyses individual students' out-of-school activity (library visits, group participation, home device use, location) by staff, platform or AI. Asset maps list places, programmes and consenting adults only (CL-G9). | blocker |
 | C20 | Evidence-based practices: every EB card applied has all its non-negotiables in the tasks (e.g. level grouping: oral baseline, a protected daily slot or camp, groups by level and regrouped, weekly review, endline). No fixed ability streams, repeating a year, or public lists of children's names and levels Tier 2 cards appear only as pilots, with a unit test and an independent check in the success indicators (EB-T2). (EB-G1, EB-G2, EB-G3, EB-T2) | blocker |
+| C21 | Decision check: re-derive each fit-check decision from the classification facts using the scope cards (`EB-scope`, `CL-scope`, `PB-scope`) and the gate prompts' ordered rules. Flag: a method that clearly fits but was abstained (or the reverse); a precondition that was guessed instead of asked; the priority order not followed; a fitting method left out without `deferred: true`. | major |
 
 ## Verdict
 - **PASS:** no blocker or major issues.

@@ -16,7 +16,7 @@ It does that by:
 1. **checking** each MIP against three sets of methods: **evidence-based practices** with the strongest trial evidence in contexts like Indian public schools (teaching by learning level, in-school tutoring, daily sound-symbol reading practice, head-teacher feedback on state lesson guides; see the [evidence ranking](reports/Education%20interventions%20evidence%20ranking.md)), **Connected Learning** (Ito et al.), and **participatory budgeting** (from Stanford's Crowdsourced Democracy Team and related work);
 2. **applying** them only where they fit, and saying plainly when they don't;
 3. **keeping** the original objective, the "micro" size, and the adult owner;
-4. **reviewing** every revision against 20 checks (no invented evidence, no tracking of children, no money handled by students, offline by default, and so on);
+4. **reviewing** every revision against 21 checks, including whether the right methods were chosen (no invented evidence, no tracking of children, no money handled by students, offline by default, and so on);
 5. **delivering** one-page teacher cards for the original *and* the revised plan, so the school chooses.
 
 ### Why this might matter
@@ -29,7 +29,7 @@ It does that by:
 ## How it works
 
 ```
-MIP (paste / upload / link) ──► read it ──► check fit ──► revise (only if it fits) ──► review (20 checks) ──► teacher cards
+MIP (paste / upload / link) ──► read it ──► check fit ──► revise (only if it fits) ──► review (21 checks) ──► teacher cards
                                    │            │
                          long resource?    "doesn't apply" is a valid, common answer
                          → one ≤8-week slice
@@ -69,10 +69,10 @@ python3 -m pip install anthropic jsonschema
 Check everything offline (no API key needed):
 
 ```bash
-python3 schema/validate_examples.py && python3 evals/run_gates.py --dry-run && python3 agent-kit/build.py
+python3 schema/validate_examples.py && python3 evals/decision_model.py --strict && python3 evals/run_gates.py --dry-run && python3 agent-kit/build.py
 ```
 
-Run the live fit-check test. This makes 48 calls on Claude Opus 5.5, costing a few dollars. Set the key in your own terminal; don't paste it into a chat:
+Run the live fit-check test. This makes 60 calls on Claude Opus 5.5, costing a few dollars. Set the key in your own terminal; don't paste it into a chat:
 
 ```bash
 export ANTHROPIC_API_KEY=...
@@ -241,7 +241,7 @@ ShikshagrahaMIPTransformer/
 │   ├── README.md                 index
 │   ├── ux/                       who uses it, the end-to-end journey, decision points
 │   ├── walkthroughs/             12 plain-language examples (01–12), each ending in a teacher card
-│   └── regeneration-prompts.md   13 prompts to rebuild this project from scratch with an AI coding agent
+│   └── regeneration-prompts.md   14 prompts to rebuild this project from scratch with an AI coding agent
 │
 ├── frameworks/                   THE METHOD: cards the prompts read
 │   ├── evidence-based-practices.md   Tier 1 practices + Tier 2 pilot cards (EB-*)
@@ -263,13 +263,16 @@ ShikshagrahaMIPTransformer/
 │
 ├── evals/                        TESTING
 │   ├── golden/                   12 reference examples (technical versions of the walkthroughs)
-│   ├── gate_fixtures.json        12 test inputs with expected fit-check decisions
+│   ├── gate_fixtures.json        15 test inputs with expected fit-check decisions
+│   ├── decision_model.py         executable model of the fit-check rules (no API needed)
+│   ├── decision_cases.json       20 cases for the model, including edge cases
 │   ├── run_gates.py              fit-check test runner (needs ANTHROPIC_API_KEY for live runs)
 │   ├── sources.md                Commons documents the examples are built from
 │   └── runs/                     created by live test runs
 │
 ├── reports/
-│   └── Education interventions evidence ranking.md   33 options scored; how the Tier 1/2 practices were chosen
+│   ├── Education interventions evidence ranking.md   33 options scored; how the Tier 1/2 practices were chosen
+│   └── Decision path analysis.md     verification of how the agent chooses a method, and the fixes made
 └── research_notes/
     └── Education interventions evidence ranking/     the five research notes behind that report
 ```

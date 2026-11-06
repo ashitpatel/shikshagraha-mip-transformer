@@ -1,5 +1,5 @@
 {
-  "_about": "Gate-eval fixtures: one baseline MIP per golden example, plus the owner context and the expected gate decisions. 'expected' is the primary answer from the golden example; 'acceptable' lists answers that are also defensible under the gate prompts' rules. Fixtures 1, 2 and 8 are SEEDS authored for this eval: the golden examples were written as new MIPs (generation mode), so their gate inputs are plain pre-transformation versions; fixture 8 re-targets the catalogue's 'School Exposure Visit' pattern to Class 8->9, because the catalogue has no such MIP. Baselines 3-7 follow the 'Baseline MIP' tables in evals/golden/*.md (paraphrased from the sources). The evidence_based gate (Tier 1 practices, frameworks/evidence-based-practices.md) was added later; its expected answers are this project's judgement and more of them allow two answers, because the plan-to-routine rule is new.",
+  "_about": "Gate-eval fixtures: one baseline MIP per golden example, plus the owner context and the expected gate decisions. 'expected' is the primary answer from the golden example; 'acceptable' lists answers that are also defensible under the gate prompts' rules. Fixtures 1, 2 and 8 are SEEDS authored for this eval: the golden examples were written as new MIPs (generation mode), so their gate inputs are plain pre-transformation versions; fixture 8 re-targets the catalogue's 'School Exposure Visit' pattern to Class 8->9, because the catalogue has no such MIP. Baselines 3-7 follow the 'Baseline MIP' tables in evals/golden/*.md (paraphrased from the sources). The evidence_based gate (Tier 1 practices, frameworks/evidence-based-practices.md) was added later; its expected answers are this project's judgement and more of them allow two answers, because the plan-to-routine rule is new. Fixtures 13-15 come from the decision-path analysis edge cases (E1, E6, E8).",
   "gates": [
     "connected_learning",
     "pb_process",
@@ -416,7 +416,7 @@
         "pb_prioritise": "APPLY",
         "pb_allocate": "CONDITIONAL",
         "budget_capped_choice": "ABSTAIN",
-        "evidence_based": "PARTIAL"
+        "evidence_based": "ABSTAIN"
       },
       "acceptable": {
         "connected_learning": [
@@ -436,8 +436,8 @@
           "ABSTAIN"
         ],
         "evidence_based": [
-          "PARTIAL",
-          "ABSTAIN"
+          "ABSTAIN",
+          "PARTIAL"
         ]
       }
     },
@@ -878,6 +878,231 @@
         "evidence_based": [
           "APPLY",
           "CONDITIONAL"
+        ]
+      }
+    },
+    {
+      "id": "13-edge-library-books-no-group",
+      "golden": "reports/Decision path analysis.md (E1)",
+      "seed": true,
+      "context": "The HM has a confirmed, unearmarked Rs 15,000 for library books. No committee or students are involved in choosing.",
+      "mip": {
+        "title": "Buying library books",
+        "domain": "Access & Infrastructure",
+        "sub_category": "Physical Infrastructure",
+        "target_stakeholder": "HM",
+        "duration": "2 weeks",
+        "objective": "Improve children's reading by adding books to the school library",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "List the books the library needs"
+          },
+          {
+            "seq": 2,
+            "name": "Get price quotes from two shops"
+          },
+          {
+            "seq": 3,
+            "name": "Choose the books within the budget"
+          },
+          {
+            "seq": 4,
+            "name": "Buy the books"
+          },
+          {
+            "seq": 5,
+            "name": "Record the books in the library register"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "seed for decision-path edge case E1"
+        }
+      },
+      "expected": {
+        "connected_learning": "ABSTAIN",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "PARTIAL"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "ABSTAIN"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN",
+          "APPLY"
+        ],
+        "evidence_based": [
+          "PARTIAL"
+        ]
+      }
+    },
+    {
+      "id": "14-catalogue-teacher-motivation",
+      "golden": "reports/Decision path analysis.md (E6)",
+      "seed": false,
+      "context": "",
+      "mip": {
+        "title": "Teacher's motivation matters",
+        "domain": "Human Resource",
+        "sub_category": "Mentoring opportunities",
+        "contributed_by": "Mantra4Change & ShikshaLokam",
+        "target_stakeholder": "HM",
+        "duration": "1 month",
+        "objective": "Ensure that the teachers are motivated",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Conduct a small baseline survey to map the motivation level of teachers"
+          },
+          {
+            "seq": 2,
+            "name": "Organise small sharing circles with teachers daily"
+          },
+          {
+            "seq": 3,
+            "name": "Schedule a one-to-one conversation with every teacher in the month"
+          },
+          {
+            "seq": 4,
+            "name": "Discuss the challenges faced by each teacher"
+          },
+          {
+            "seq": 5,
+            "name": "Create an action plan with each teacher for identified areas of improvement"
+          },
+          {
+            "seq": 6,
+            "name": "Review Samiksha reports to analyse the change in teachers' motivation"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "commons#259 / HR / Teacher's motivation matters"
+        }
+      },
+      "expected": {
+        "connected_learning": "ABSTAIN",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "ABSTAIN"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "ABSTAIN"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "ABSTAIN"
+        ]
+      }
+    },
+    {
+      "id": "15-catalogue-teacher-mela",
+      "golden": "reports/Decision path analysis.md (E8)",
+      "seed": false,
+      "context": "",
+      "mip": {
+        "title": "Teacher mela",
+        "domain": "Human Resource",
+        "sub_category": "Staff recognition",
+        "contributed_by": "Mantra4Change & ShikshaLokam",
+        "target_stakeholder": "HM",
+        "duration": "2 weeks",
+        "objective": "To conduct effective engagement amongst all the teachers",
+        "tasks": [
+          {
+            "seq": 1,
+            "name": "Send a survey form to understand teachers' expectations from the mela"
+          },
+          {
+            "seq": 2,
+            "name": "Organise and conduct a meeting with teachers to discuss the Teacher Mela"
+          },
+          {
+            "seq": 3,
+            "name": "List the activities for the Teacher Mela"
+          },
+          {
+            "seq": 4,
+            "name": "Allocate responsibilities for the Teacher Mela"
+          },
+          {
+            "seq": 5,
+            "name": "Arrange the logistics to organise the mela"
+          },
+          {
+            "seq": 6,
+            "name": "Communicate the schedule for the teacher mela"
+          },
+          {
+            "seq": 7,
+            "name": "Conduct the Teacher Mela"
+          },
+          {
+            "seq": 8,
+            "name": "Ask the teachers for feedback after the mela"
+          },
+          {
+            "seq": 9,
+            "name": "Document the mela proceedings"
+          }
+        ],
+        "x_transform": {
+          "source_ref": "commons#259 / HR / Teacher mela"
+        }
+      },
+      "expected": {
+        "connected_learning": "ABSTAIN",
+        "pb_process": "ABSTAIN",
+        "pb_prioritise": "ABSTAIN",
+        "pb_allocate": "ABSTAIN",
+        "budget_capped_choice": "ABSTAIN",
+        "evidence_based": "ABSTAIN"
+      },
+      "acceptable": {
+        "connected_learning": [
+          "ABSTAIN"
+        ],
+        "pb_process": [
+          "ABSTAIN"
+        ],
+        "pb_prioritise": [
+          "ABSTAIN",
+          "APPLY"
+        ],
+        "pb_allocate": [
+          "ABSTAIN"
+        ],
+        "budget_capped_choice": [
+          "ABSTAIN"
+        ],
+        "evidence_based": [
+          "ABSTAIN"
         ]
       }
     }

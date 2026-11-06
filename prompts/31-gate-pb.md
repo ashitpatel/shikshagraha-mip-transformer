@@ -16,11 +16,11 @@ In the catalogue, almost no MIP mentions money, so `pb_allocate` is usually ABST
 - `{{CONTEXT}}` (optional): owner statements, e.g. a confirmed amount
 
 ## Decision procedure
-1. **`pb_process`** (card `PB-scope`): APPLY only if `constituency.present`, `shared_resource.kind ∈ {money, space, materials}`, and `public_outcome != none` are all true (or would be after one added report-back task). A team dividing its own time → ABSTAIN.
-2. **`pb_prioritise`** (card `PB-prioritise`): APPLY if `competing_options.count ≥ 2` (or a task generates several needs or options) **and** the decision is legitimately collective (SMC, school community, class). Otherwise ABSTAIN.
-3. **`pb_allocate`** (card `PB-allocate-knapsack`):
+1. **`pb_process`** (card `PB-scope`): APPLY only if `constituency.present` and `shared_resource.kind ∈ {money, space, materials}`. The third condition, a public outcome, is met either by the MIP as written or by adding one report-back task (the transformer always adds it). A team dividing its own time → ABSTAIN.
+2. **`pb_prioritise`** (card `PB-prioritise`): APPLY if `competing_options.count ≥ 2` (or a task generates several needs or options) **and** the decision is legitimately collective (SMC, school community, class). Otherwise ABSTAIN. If `pb_prioritise` is APPLY but `pb_process` is ABSTAIN, the transformer calls it "a class vote" or "a group vote", never "participatory budgeting".
+3. **`pb_allocate`** (card `PB-allocate-knapsack`). **Precondition:** someone must vote. If neither `pb_process` nor `pb_prioritise` is APPLY → **ABSTAIN** (a budget ballot needs a group). Otherwise:
    - `amount_confirmed == "yes"` and costed options exceed the amount → **APPLY**;
-   - money is plausibly involved but `amount_confirmed != "yes"` → **CONDITIONAL**, with `condition`: "Is a discretionary (non-earmarked) amount confirmed, how much, and from what source?";
+   - `shared_resource.choice_among_costed_items == true` but `amount_confirmed != "yes"` → **CONDITIONAL**, with `condition`: "Is a discretionary (non-earmarked) amount confirmed, how much, and from what source?". Event logistics and routine running costs don't count;
    - otherwise → **ABSTAIN**.
 4. **`budget_capped_choice`** (card `PB-not-pb`): APPLY when there is a hard cap (e.g. the team's own hours) and more options than fit, **but** `pb_process` is ABSTAIN. The transformer must then label it "adapted from knapsack voting", never "participatory budgeting".
 5. **Indian SMC context** (card `PB-india-smc`): if the constituency is or includes the SMC, add the constraint "ballots are advisory to SMC agreement (PB-G5)". If students are added as voters, add "student voice is an addition to SMC practice; label it as such".
@@ -43,4 +43,6 @@ Return **only**:
 ## Anti-patterns (never)
 - `pb_allocate = APPLY` without a confirmed, discretionary amount.
 - `pb_process = APPLY` for a single team's internal planning.
+- `pb_allocate` APPLY or CONDITIONAL when no group decides (neither `pb_process` nor `pb_prioritise` is APPLY).
+- A CONDITIONAL budget question for event logistics or routine costs.
 - Attributing Equal Shares to Stanford.

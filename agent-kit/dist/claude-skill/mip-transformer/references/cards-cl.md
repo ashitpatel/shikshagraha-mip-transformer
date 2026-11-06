@@ -27,7 +27,7 @@ Connected Learning describes learning that is **interest-driven, supported by re
 
 - **Gate test:** is there a **young person's learning experience** inside the MIP that the MIP owner can shape?
   - **APPLY:** teacher-owned pedagogy MIPs; student-facing clubs, reading and projects; Learning Centre activities.
-  - **PARTIAL:** HM- or SMC-owned MIPs where students take part in a task that can be designed as a learning experience (e.g. a student cabinet running a survey).
+  - **PARTIAL:** HM- or SMC-owned MIPs where student participation is **incidental** rather than the main activity (e.g. a student cabinet running a survey, a care rota). At most one target principle. HM-owned MIPs whose main activity is students' learning experience (e.g. a transition visit) are APPLY.
   - **ABSTAIN:** administrative, HR, infrastructure, or governance MIPs with no student learning experience (e.g. staff meetings, teacher motivation, procurement, SDP drafting).
 - **Anti-patterns:** applying it to teachers as learners and calling it Connected Learning (a defensible *extension*, but it must be labelled as such); relabelling community participation as Connected Learning (that's participatory governance; see `PB-scope`).
 

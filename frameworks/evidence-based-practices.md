@@ -35,7 +35,11 @@
 
 ### EB-scope — when the evidence-based cards apply
 - **Gate test:** does the MIP aim at (a) foundational reading or maths, (b) children behind their grade level, or (c) a head-teacher planning, management or procurement task that could produce a classroom routine?
-- **Decisions:** APPLY when (a) or (b) and a card's non-negotiables fit within the MIP's limits. PARTIAL for (c): apply `EB-plan-to-routine` only. CONDITIONAL for `EB-fidelity-loop` until it's confirmed that state structured-pedagogy materials are in classrooms. PARTIAL (pilot) when only a Tier 2 card fits (regular subject teaching where a short daily routine can be added). ABSTAIN for MIPs about engagement, civic participation, or infrastructure for its own sake.
+- **Decisions, evaluated in this order (first match wins):**
+  1. (a) or (b) → **APPLY** with the Tier 1 cards whose preconditions are confirmed (and whose non-negotiables fit). If none is confirmed but a precondition is unknown (children behind? a protected slot? volunteers? state lesson guides in use?) → **CONDITIONAL**: ask, don't guess.
+  2. Regular subject teaching where a Tier 2 card fits → **PARTIAL (pilot)**, never instead of a fitting Tier 1 card.
+  3. (c) **and the MIP's objective concerns learning or teaching** → **PARTIAL** with `EB-plan-to-routine`.
+  4. Otherwise → **ABSTAIN**: engagement, civic participation, HR, events, and infrastructure or resources for their own sake, including planning MIPs whose objective isn't learning.
 - **Anti-patterns:** applying a card without its non-negotiables ("orient teachers to TaRL"); adding an EB card to a MIP whose objective isn't learning just to make it "evidence-based".
 
 ### EB-measure — oral baseline and endline (required with EB-level-grouping, EB-tutoring, EB-akshara)
@@ -80,8 +84,8 @@
 
 ### EB-plan-to-routine — every planning task produces a classroom routine
 - **Means:** in head-teacher MIPs that plan, assess, report or procure, the plan must lead to a **classroom-facing routine** (protecting a level-group hour, a weekly review of level movement, following up absent children, using purchased materials in a daily block). Planning alone hasn't improved learning [E14].
-- **Gate test:** does the MIP end in a plan, report, list or purchase with no change to what happens in classrooms?
-- **Allowed edits:** add one task that turns the plan's top priority into a routine from another EB card. Where purchases are planned, tie each item to the routine that will use it. If PB applies, **restrict the ballot options to evidence-based practices** and the materials they need.
+- **Gate test:** does the MIP end in a plan, report, list or purchase with no change to what happens in classrooms, **and is its objective about learning or teaching** (e.g. a School Development Plan, an FLN or academic plan)? If the objective isn't learning (HR, events, infrastructure), don't apply this card.
+- **Allowed edits:** add one task that turns the plan's top priority into a routine from another EB card. If that routine is a Tier 1 practice, either include all its non-negotiables or record it as a follow-on MIP; never add a hollow version. Where purchases are planned, tie each item to the routine that will use it. If PB applies, **restrict the ballot options to evidence-based practices** and the materials they need.
 - **Anti-patterns:** adding more plans, forms or reports; buying inputs (books, TLM, devices) with no routine that uses them (GEEAP rates inputs alone a "Bad Buy" [E11]).
 - **Supportable claims:** "In a large Indian trial (Madhya Pradesh, 1,774 schools), school self-assessment and improvement plans had no effect on learning; officials largely treated them as paperwork." [E14] · "The Global Education Evidence Advisory Panel rates textbooks, libraries and grants a 'Bad Buy' when nothing else changes." [E11]
 

@@ -139,7 +139,9 @@
         "decision": { "enum": ["APPLY", "PARTIAL", "CONDITIONAL", "ABSTAIN"] },
         "reason": { "type": "string" },
         "cards": { "type": "array", "items": { "type": "string", "pattern": "^(CL|PB|EB)-[a-z-]+$" } },
-        "condition": { "type": "string", "description": "For CONDITIONAL: the question the MIP owner must answer, e.g. 'Is a discretionary amount confirmed, and how much?'" }
+        "condition": { "type": "string", "description": "For CONDITIONAL: the question the MIP owner must answer, e.g. 'Is a discretionary amount confirmed, and how much?'" },
+        "tier": { "enum": [1, 2], "description": "Evidence-based gate only: 1 = Tier 1 practice, 2 = Tier 2 pilot" },
+        "deferred": { "type": "boolean", "description": "True if the gate applied but the transformer couldn't fit the method within the size limits (recorded as a follow-on idea)" }
       }
     },
     "task_transform": {
