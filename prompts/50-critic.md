@@ -10,6 +10,11 @@ You're an independent reviewer. You don't rewrite the MIP; you **find violations
 - `{{GATES_JSON}}`
 - `{{CL_CARDS}}`, `{{PB_CARDS}}`, `{{EB_CARDS}}`
 - `{{SCHEMA_ERRORS}}`: the result of machine validation against `schema/mip.schema.json` (empty if valid)
+- `{{PREVIOUS_REVIEW}}` (optional): the earlier review of the previous attempt (by any reviewer), when this is a re-review
+
+## How to review
+- **Find everything in one pass.** Run each check against **every** task, ballot and group, not only the first place it applies. A re-review should not be the first to raise an issue that was already present.
+- **On a re-review**, first re-check each earlier issue and record it in `previous_issues` as `fixed` or `not fixed`. Then run all checks again. Mark an issue `"new": true` if it wasn't in the earlier review, and say in `where` whether the revision introduced it.
 
 ## Checks (run all 21; each has an ID)
 | ID | Check | Severity |
@@ -30,8 +35,8 @@ You're an independent reviewer. You don't rewrite the MIP; you **find violations
 | C14 | Equity and inclusion: choices are open to all; mixed groups or rotating roles; picture or oral options; no caste or gender steering (CL-G6, PB-G4) | major |
 | C15 | Offline and cost: nothing requires devices, connectivity or paid materials (CL-G4) unless `pb_allocate` is APPLY | major |
 | C16 | Counting rule announced before any ballot that allocates (PB-G6) | major |
-| C17 | Feasibility: a teacher or HM can act on each task as written, with concrete materials and no jargon | minor |
-| C18 | Attribution line present with source_ref and licence | minor |
+| C17 | Feasibility: a teacher or HM can act on each task as written, with concrete materials and no jargon; each task name is one short sentence (≤20 words) with detail in `sub_tasks` | minor |
+| C18 | Attribution line present with source_ref and licence; `x_transform.cost` is nil, an amount stated in the MIP or a confirmed allocation, or "not stated" (never a guess) | minor |
 | C19 | No child-level tracking outside school: no task collects, records or analyses individual students' out-of-school activity (library visits, group participation, home device use, location) by staff, platform or AI. Asset maps list places, programmes and consenting adults only (CL-G9). | blocker |
 | C20 | Evidence-based practices: every EB card applied has all its non-negotiables in the tasks (e.g. level grouping: oral baseline, a protected daily slot or camp, groups by level and regrouped, weekly review, endline). No fixed ability streams, repeating a year, or public lists of children's names and levels Tier 2 cards appear only as pilots, with a unit test and an independent check in the success indicators (EB-T2). (EB-G1, EB-G2, EB-G3, EB-T2) | blocker |
 | C21 | Decision check: re-derive each fit-check decision from the classification facts using the scope cards (`EB-scope`, `CL-scope`, `PB-scope`) and the gate prompts' ordered rules. Flag: a method that clearly fits but was abstained (or the reverse); a precondition that was guessed instead of asked; the priority order not followed; a fitting method left out without `deferred: true`. | major |
@@ -47,8 +52,9 @@ Return **only**:
 {
   "verdict": "PASS | REVISE | REJECT",
   "issues": [
-    { "check": "C9", "severity": "blocker", "where": "x_transform.rationale[0]", "problem": "cites a percentage not on any card", "fix": "replace with the CL-interests supportable claim" }
+    { "check": "C9", "severity": "blocker", "where": "x_transform.rationale[0]", "problem": "cites a percentage not on any card", "fix": "replace with the CL-interests supportable claim", "new": false }
   ],
+  "previous_issues": [ { "check": "C14", "where": "tasks[3]", "status": "fixed | not fixed" } ],
   "notes": "one or two sentences"
 }
 ```

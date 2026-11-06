@@ -261,3 +261,66 @@ Six fresh agents re-ran inputs 2, 5, 6, 12, 13 and 15 under the same blind condi
 - **Only Claude was tested.** Behaviour in ChatGPT, Gemini or free tiers hasn't been checked.
 - **Unaffected inputs weren't re-run.** The nine inputs not re-run were scored on round-1 wording. The round-2 changes were narrow (the collective-decision and costed-plan definitions, the fidelity-loop entry, a tie-break and a risk flag), but those inputs weren't re-run under them.
 - **Only the fit-check stage was tested.** Transform, critic and render weren't run.
+
+## 9. Pipeline test: rewrite, review and teacher card (6 November 2026)
+
+**Goal:** check the stages after the fit checks. Five catalogue plans went through 40-transform → 50-critic (up to 2 revisions) → 60-render. Each step was run by a fresh agent that saw only its prompt, the framework cards and the case inputs, never the golden answers. A new script, [evals/check_transform.py](../evals/check_transform.py), runs the mechanical checks (schema C1, size C2, objective C3, owner C5, labels C8, rationale numbers C9) before each review and passes the schema errors to the reviewer. Outputs are in `evals/runs/20261106-pipeline/` (not committed).
+
+| Plan | Fit-check input | Reviews | Outcome | Compared with the golden example |
+|---|---|---|---|---|
+| 14 Teacher motivation | all ABSTAIN | PASS | Returned unchanged (correct) | No golden example; matches the decision case |
+| 12 Lesson observation | EB fidelity loop | PASS | 7 tasks, 0 added, 2→3 weeks | Matches Example 12 closely |
+| 9 Reading by level | EB level grouping + akshara + measure; CL APPLY | REVISE (C1) → PASS | 6 tasks, 2 added, 4→5 weeks; protected daily slot, weekly regrouping, endline check | Matches Example 9's EB core. CL ideas went into modified tasks instead of being deferred (acceptable: no added task used) |
+| 7 Real World Projects | CL APPLY; EB PARTIAL (retrieval) | REVISE (C1) → REVISE (C6) → PASS | 7 tasks, 1 added | CL changes match Example 7 (interest-chosen problems, peer roles, family audience). The added task is a retrieval check instead of Example 7's "ask an adult who uses this maths" |
+| 6 School resources | PB prioritise APPLY; allocate CONDITIONAL | REVISE (C1, C13) → REVISE (C14) → REVISE (C14) | **Original returned with reasons** (limit of 2 revisions reached) | The drafts were close to Example 6. The last open issue: picture or oral ballots and women voting first covered SMC members but not parents |
+
+**Result:** 4 of 5 plans produced a reviewed plan or a correct "no change". 1 plan fell back to the original, which is the designed safe outcome. No reviewer passed a harmful or unsupported change.
+
+### Findings
+1. **Gate fields were dropped when copied (fixed).** 3 of 5 first drafts failed the schema because they copied gates without `reason`, and the schema rejected `tier: null` for plan-to-routine. Fixed in [prompts/40-transform.md](../prompts/40-transform.md) (copy every field) and [schema/mip.schema.json](../schema/mip.schema.json) (`tier` allows null).
+2. **Teacher cards are far over one page.** The revised cards for plans 7, 9 and 12 run to about 1,000–1,200 words each; the target is about 400. The render step may not condense, and the transform writes long task names. Proposed fix: the transform keeps each task name to one short sentence with detail in `sub_tasks`, and the card shows names plus guardrails only.
+3. **Reviewers vary, and each round finds something new.** On plan 7 the second reviewer caught a mislabelled principle (CL-production, already strong) that the first missed. On plan 6 each round raised a different equity issue, so the revisions never converged. Proposed fix: the reviewer lists every issue in one pass (the prompt already asks for this), and the revision round re-checks the earlier issues explicitly.
+4. **Transform missed guardrails at first.** Plan 6's first draft left out PB-G5 (ballot advisory to the SMC) and PB-G4 (accessible ballots). The reviewer caught both, but they belong in the transform's own checklist.
+5. **No cost field.** The schema has no cost, so the render step wrote "Cost: Nil" without a source. Proposed fix: add an optional `cost` field, and render "not stated" when it's missing.
+6. **Licence line.** The card for an unchanged plan credits the source but doesn't state its licence.
+7. **Pronouns:** checked; no gendered pronouns for teachers in the drafts or cards.
+
+**Caveats:** one run per plan; Claude only; five plans. The golden examples were written before the evidence-based gate existed, so EB additions (e.g. retrieval practice in plan 7) have no golden counterpart.
+
+### Fixes applied, and a re-run of plans 6 and 9
+| Finding | Fix |
+|---|---|
+| 2. Long cards | [40-transform](../prompts/40-transform.md): task names ≤20 words, ≤3 sub-tasks of ≤12 words, roles and artefacts ≤10 words, one-sentence guardrails, whole-plan rules stated once; shortening never drops a skill or check from the original task. [60-render](../prompts/60-render.md): about 450 words, sub-tasks dropped first when over, and a "Ground rules" section. `check_transform.py` flags task names over 20 words. |
+| 3. Reviewer drift | [40-transform](../prompts/40-transform.md): apply each fix everywhere the same rule applies. [50-critic](../prompts/50-critic.md): find every issue in one pass; on a re-review, mark each earlier issue fixed or not, and flag new issues. |
+| 4. Missed ballot rules | 40-transform lists PB-G4 (picture or spoken options and read-aloud help for every voter, women first, parents can vote outside meetings, turnout counted by gender) and PB-G5, plus a self-check before returning. |
+| 5. Cost | Optional `x_transform.cost` in the schema: "nil", a stated amount, or "not stated". Critic C18 and `check_transform.py` check it. |
+| 6. Licence | 60-render gives the original card a credit line with the licence, and "contributor not recorded" when the contributor is unknown. |
+
+The agent kit's card template, checklist (C14, C17, C18), reviewer instructions and core instructions were updated to match. The core instructions are 7,995 characters, within the 8,000 limit.
+
+**Re-run** (`evals/runs/20261106-pipeline2/`, fresh blind agents, same inputs):
+
+| Plan | Before the fixes | After the fixes |
+|---|---|---|
+| 6 School resources | REVISE ×3, so the original was returned | REVISE (objective wording, counting rule stated late, order of steps) → **PASS**. The parent-ballot inclusion rules were in the first draft. Card: 516 words |
+| 9 Reading by level | REVISE → PASS; card about 1,050 words | REVISE (C4: shortening had dropped "understand"; a transition card neither used nor deferred; per-group counts) → **PASS**. Card: 716 words |
+
+**What the re-run shows:**
+- The equity issue that stopped plan 6 didn't recur, and the revision converged in one round.
+- The re-review reported every earlier issue by name.
+- Cards are 30–50% shorter but still over the target of about 450 words. In plan 9 the "What changed" table alone is about 200 words and repeats the steps.
+- The word limits had a side effect, which the reviewer caught: a shortened task name lost a skill. The transform prompt now forbids that.
+
+**Two-sided card (applied after the re-run).** The teacher card now has a one-page front to run from (title, steps, ground rules, indicators, open questions, attribution) and a back for the HM, SMC or reviewer ("What changed and why"). The change is in [60-render](../prompts/60-render.md), the kit's card template, the README and the UX docs. Both cards were re-rendered by fresh agents:
+
+| Plan | Front (target first set at 450, then 550) | Back | Original card |
+|---|---|---|---|
+| 6 School resources | 407 words ✔ | 155 words | 86 words |
+| 9 Reading by level | 540 words (about 90 over) | 130 words | 91 words |
+
+In both, the render step dropped every sub-task list to fit and pointed to the catalogue row. Plan 9's front is still over the target because all 5 of its tasks changed and each carries a role, an artefact and a guardrail.
+
+**Decision:** the front's target is now **about 550 words**, one A4 page at normal print size, so both fronts fit. Updated in 40-transform, 60-render, the kit's card template and the regeneration prompts.
+
+**Still open:**
+- **Licence assumption.** The reviewer noted that the catalogue record doesn't state its licence; the attribution assumes CC BY-SA.

@@ -1,6 +1,6 @@
 # Prompt pipeline
 
-Nine prompts transform one Micro-Improvement Project (MIP). Each returns **JSON only**, so an orchestrator script can validate and route it. A runner exists only for the **classify + gates** stages: [../evals/run_gates.py](../evals/run_gates.py), scored against [../evals/gate_fixtures.json](../evals/gate_fixtures.json). The transform, critic and render stages have no runner yet.
+Nine prompts transform one Micro-Improvement Project (MIP). Each returns **JSON only**, so an orchestrator script can validate and route it. A runner exists only for the **classify + gates** stages: [../evals/run_gates.py](../evals/run_gates.py), scored against [../evals/gate_fixtures.json](../evals/gate_fixtures.json). The transform, critic and render stages have no runner yet; [../evals/check_transform.py](../evals/check_transform.py) runs the checks code can do on a transform output and writes `{{SCHEMA_ERRORS}}` for the critic.
 
 ```
 catalogue row ──► 10-parse ─┐
@@ -27,8 +27,8 @@ resource text ──► 15-derive ┘                 31-gate-pb ─┼─► 40
 | [31-gate-pb](31-gate-pb.md) | MIP + facts + PB cards | Four decisions: process, prioritise, allocate, budget-capped choice | Allocation needs a confirmed amount |
 | [32-gate-eb](32-gate-eb.md) | MIP + facts + EB cards | APPLY / PARTIAL / CONDITIONAL / ABSTAIN, ≤2 practice cards + measurement | Only with all non-negotiables; Tier 1 of the evidence ranking |
 | [40-transform](40-transform.md) | Baseline + gates + cards (+ critic feedback) | Transformed MIP + change log + open questions | ≤2 added tasks; supportable claims only |
-| [50-critic](50-critic.md) | Baseline + transform + gates + cards + schema errors | PASS / REVISE / REJECT, with issues C1–C21 | Independent; no rewriting |
-| [60-render](60-render.md) | Final MIP | Catalogue row, teacher card, improvement-story stub | No content changes |
+| [50-critic](50-critic.md) | Baseline + transform + gates + cards + schema errors (+ the previous review) | PASS / REVISE / REJECT, with issues C1–C21 | Independent; no rewriting; re-checks earlier issues |
+| [60-render](60-render.md) | Final MIP | Catalogue row, teacher card (one page), improvement-story stub | No content changes; licence on every card |
 
 ## Shared context
 - Cards: [../frameworks/connected-learning.md](../frameworks/connected-learning.md), [../frameworks/pb-techniques.md](../frameworks/pb-techniques.md), [../frameworks/evidence-based-practices.md](../frameworks/evidence-based-practices.md). Pass the **full text** into the gate, transform and critic prompts.

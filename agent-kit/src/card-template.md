@@ -1,15 +1,18 @@
 # CARD-TEMPLATE
 
-Use this layout for every teacher card. Keep it to one page, in plain words, in the user's chosen language. No card codes.
+Use this layout for every teacher card. The front (title to attribution) is one A4 page, about 550 words at most; "What changed" goes on the back. Use plain words, in the user's chosen language. No card codes. Each step is one short sentence; each "Remember" is one sentence. Rules for every step go once under "Ground rules".
 
 ```
 # <Title>
-Who runs it: <owner> · Time: <duration> · Cost: <nil or amount>
+Who runs it: <owner> · Time: <duration> · Cost: <nil, an amount the MIP states, or "not stated"; never guess>
 Goal: <objective>  (Added: <addition, if any>)
 
 Steps
 1. <task>. Students: <role, if any>. Make: <artefact, if any>. Remember: <safety or fairness rule, if any>
 2. ...
+
+Ground rules for every step
+- <e.g. no photos of children online without written parental consent>
 
 How you'll know it worked
 - <2–4 observable indicators>
@@ -17,10 +20,12 @@ How you'll know it worked
 Before you start
 - <open questions, e.g. "Is a discretionary amount confirmed? If not, skip step 5.">
 
-What changed from the original (and why)   <- revised card only
-| Step | Change | Why |
-
 Adapted from <original title>, <organisation>, via Shikshagraha Commons. CC BY-SA.
+(Original card: "<title>, by <organisation, or 'contributor not recorded'>, via Shikshagraha Commons. CC BY-SA.")
+
+--- back of the card (revised card only) ---
+What changed from the original (and why)
+| Step | Change | Why |
 ```
 
 ## Example (revised card)
@@ -43,11 +48,13 @@ How you'll know it worked
 - Every team works on a problem it proposed
 - At least 80% of students can explain the concept in their project
 
+Adapted from Real World Projects, ShikshaLokam, via Shikshagraha Commons. CC BY-SA.
+
+--- back of the card ---
 What changed from the original (and why)
 | Step | Change | Why |
 | 2 | Students propose the problem | It's their real world, not the teacher's guess at it |
 | 3, 6 | Rotating roles and peer feedback | Everyone does the maths |
 | 5, 7 | An adult who uses this maths; a family audience | Learning connects beyond the classroom |
 
-Adapted from Real World Projects, ShikshaLokam, via Shikshagraha Commons. CC BY-SA.
 ```

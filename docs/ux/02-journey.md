@@ -44,7 +44,7 @@ They can edit, reject, or publish it next to the original.
 
 ## Owner side
 
-**6. See both versions.** The HM or teacher sees the original and the revised version as one-page **teacher cards** (who runs it, time, cost, steps, how you'll know it worked, what changed and why). Which one is shown first may be randomised, so the two can later be compared fairly.
+**6. See both versions.** The HM or teacher sees the original and the revised version as **teacher cards**. The one-page front has who runs it, time, cost, steps, ground rules, how you'll know it worked and open questions; the back of the revised card says what changed and why. Which one is shown first may be randomised, so the two can later be compared fairly.
 
 **7. Answer open questions.** Some revised versions depend on facts only the owner knows. Example: *"If the HM confirms a discretionary amount, the SMC votes on costed items. Is an amount confirmed?"* If not, that step is simply skipped.
 

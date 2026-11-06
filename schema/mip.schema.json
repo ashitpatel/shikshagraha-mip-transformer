@@ -101,6 +101,7 @@
           "items": { "type": "string" },
           "description": "What the original already does that each framework values; must be filled before any additions are proposed"
         },
+        "cost": { "type": "string", "description": "\"nil\" (existing school materials only), an amount stated in the MIP or a confirmed allocation, or \"not stated\". Never a guess." },
         "constraint": {
           "type": "object",
           "description": "Only when a budget-capped choice applies",
@@ -140,7 +141,7 @@
         "reason": { "type": "string" },
         "cards": { "type": "array", "items": { "type": "string", "pattern": "^(CL|PB|EB)-[a-z-]+$" } },
         "condition": { "type": "string", "description": "For CONDITIONAL: the question the MIP owner must answer, e.g. 'Is a discretionary amount confirmed, and how much?'" },
-        "tier": { "enum": [1, 2], "description": "Evidence-based gate only: 1 = Tier 1 practice, 2 = Tier 2 pilot" },
+        "tier": { "enum": [1, 2, null], "description": "Evidence-based gate only: 1 = Tier 1 practice, 2 = Tier 2 pilot, null = EB-plan-to-routine (a rule, not a practice)" },
         "deferred": { "type": "boolean", "description": "True if the gate applied but the transformer couldn't fit the method within the size limits (recorded as a follow-on idea)" }
       }
     },

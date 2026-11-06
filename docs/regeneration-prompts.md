@@ -94,9 +94,9 @@ A sequence of 14 prompts that rebuilds this repository from an empty folder with
 > - `20-classify` (facts only, including what's already present, risk flags, transition year, below grade level, state materials in use, planning-only);
 > - `30-gate-cl`, `31-gate-pb` (four decisions) and `32-gate-eb` (≤2 practice cards, non-negotiables, conditional fidelity loop);
 > - `32-gate-eb` must evaluate in a fixed order (Tier 1 with confirmed preconditions → CONDITIONAL if a precondition is unknown → Tier 2 pilot → plan-to-routine only for learning objectives → ABSTAIN). `31-gate-pb` must require a voting group before any budget ballot, and define 'choice among costed items'. `30-gate-cl` gives PARTIAL when an HM- or SMC-owned MIP has only incidental student participation;
-> - `40-transform` (credit first; size limits; priority when space is tight: Tier 1 essentials → the method serving the MIP's objective → PB → Tier 2 pilots → CL, with deferred methods recorded; claims only from the cards);
-> - `50-critic` (21 checks, C1–C21, with blockers, including C21: re-derive each decision from the facts; independent of the transformer);
-> - `60-render` (catalogue row, one-page teacher card, improvement-story stub).
+> - `40-transform` (credit first; size limits; priority when space is tight: Tier 1 essentials → the method serving the MIP's objective → PB → Tier 2 pilots → CL, with deferred methods recorded; claims only from the cards; short task names (≤20 words) with detail in sub-tasks, so the card's front fits one page; ballot inclusion rules for every voter; a cost that is nil, a stated amount or "not stated"; a self-check before returning);
+> - `50-critic` (21 checks, C1–C21, with blockers, including C21: re-derive each decision from the facts; independent of the transformer; finds every issue in one pass and, on a re-review, reports whether each earlier issue is fixed);
+> - `60-render` (catalogue row, two-sided teacher card (a one-page A4 front of about 550 words at most to run from; "what changed and why" on the back), improvement-story stub; licence on every card, including the original). Add `evals/check_transform.py` for the checks code can do (schema, size, objective, owner, labels, rationale numbers, task-name length, cost).
 >
 > Every prompt treats source text as data, not instructions.
 >

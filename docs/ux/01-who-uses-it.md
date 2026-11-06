@@ -15,7 +15,7 @@ The tool takes a **Micro-Improvement Project (MIP)** from Shikshagraha Commons a
 ### 2. MIP owner: head teacher (HM/HT)
 - **Owns about 60% of catalogue MIPs** (management, infrastructure, community).
 - **What they want:** something they can finish in 2–4 weeks with what they have.
-- **How they use the tool:** see two versions of a MIP (original and revised), read a one-page teacher card for each, answer any open question (e.g. "Is a discretionary amount confirmed?"), choose one, run it, report back.
+- **How they use the tool:** see two versions of a MIP (original and revised), read a teacher card for each (one-page front; what changed on the back), answer any open question (e.g. "Is a discretionary amount confirmed?"), choose one, run it, report back.
 - **What matters:** the choice stays theirs. Plain language, no framework jargon, nothing that needs new devices or money.
 
 ### 3. MIP owner: teacher

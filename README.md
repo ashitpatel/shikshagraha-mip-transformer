@@ -17,7 +17,7 @@ It does that by:
 2. **applying** them only where they fit, and saying plainly when they don't;
 3. **keeping** the original objective, the "micro" size, and the adult owner;
 4. **reviewing** every revision against 21 checks, including whether the right methods were chosen (no invented evidence, no tracking of children, no money handled by students, offline by default, and so on);
-5. **delivering** one-page teacher cards for the original *and* the revised plan, so the school chooses.
+5. **delivering** teacher cards for the original *and* the revised plan, so the school chooses. The front of each card (one page) is what the teacher runs from; the back of the revised card says what changed and why.
 
 ### Why this might matter
 - **Learning levels are low and recovering slowly.** In ASER 2024 (rural India), **23.4%** of government-school children in Std III could read a Std II-level text, the highest in the survey's history, and **44.8%** of Std V children could [R2]. Roughly three in four Std III children in government schools still can't.
