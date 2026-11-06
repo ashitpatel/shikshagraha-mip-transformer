@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org",
+  "title": "MLS_DAG_Sequence",
+  "type": "object",
+  "required": ["macro_objective", "global_context", "mls_units"],
+  "properties": {
+    "macro_objective": { "type": "string" },
+    "global_context": {
+      "type": "object",
+      "required": ["grade_band", "time_block_minutes", "resource_intensity_score"],
+      "properties": {
+        "grade_band": { "type": "string", "enum": ["Primary", "Middle", "High"] },
+        "time_block_minutes": { "type": "integer", "minimum": 5, "maximum": 120 },
+        "resource_intensity_score": { "type": "integer", "minimum": 1, "maximum": 5 }
+      }
+    },
+    "mls_units": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["mls_id", "title", "dependencies", "tasks"],
+        "properties": {
+          "mls_id": { "type": "string" },
+          "title": { "type": "string" },
+          "dependencies": { "type": "array", "items": { "type": "string" } },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["step", "role", "action"],
+              "properties": {
+                "step": { "type": "integer" },
+                "role": { "type": "string", "enum": ["Lead_Educator", "Community_Volunteer", "Peer_Facilitator"] },
+                "action": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}\n
