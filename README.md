@@ -1,72 +1,35 @@
 # Shikshagraha MIP Scaffold Builder (SG-MSB)
 
-**Shikshagraha MIP Transformer capabilities on the lesson-scaffold-builder engine: a Micro-Improvement Project (MIP) goes in, a validated MLS DAG sequence comes out, printed as offline teacher cards.**
+**A skeletal wrapper: a Micro-Improvement Project (MIP) goes in, the [lesson-scaffold-builder](https://github.com/ashitpatel/lesson-scaffold-builder) pipeline runs it, validated MLS units and offline teacher cards come out.**
 
-> **Status: merged prototype, not yet run live end to end.** The engine comes from the [`lesson-scaffold-builder`](https://github.com/ashitpatel/lesson-scaffold-builder) package; this repo adds the MIP compatibility layer (MIP schema, `variant_id`, gate evals, agent kit). No practitioner has reviewed the merged output, and nothing here shows the cards improve learning.
+This repo owns exactly two specificities over lesson-scaffold-builder (LSB):
 
-Lineage: `ShikshagrahaMIPTransformer` (India-specific MIP prototype) → `shikshagraha-MIP-scaffold-builder` (minimal data-agnostic snapshot) → `lesson-scaffold-builder` (working generalised pipeline, now a dependency) → this repo (MIP capabilities as a thin layer over it).
+1. **MLS relabeled as MIP.** A MIP *is* a Micro-Lesson Scaffold: one MIP is one MLS unit (over 7 tasks it spans units), MIP tasks are MLS steps. The MIP catalogue format plus `x_transform` is defined in [schema/mip.schema.json](schema/mip.schema.json); every run stamps the stable content id `variant_id` (`v1:` + 16 hex).
+2. **Breakdown is mandatory and derived.** LSB lets the user keep one module or tune the breakdown; here the MIP's task chunks (`mip_to_mls`, at most 7 steps per unit) always define it. `--ask` is rejected and breakdown keys in `--answers` are overridden with the chunk-derived values. Stage limits stay user-tunable.
 
-## How it works
+Everything else — decompose, validate (D01–D11), critic (G01–G21), EB→CL→PB stages, repair, render — is LSB's, used verbatim. For pipeline concepts, LSB's live walkthroughs, and stage cards, read the LSB docs; the MIP example here is a minimal fixture for the wrapper's own tests.
 
-```
-MIP (Shikshagraha Commons) ──► sgmsb.run ──► lsb pipeline ──► teacher cards
-```
+## Install
 
-A MIP **is** a Micro-Lesson Scaffold: one MIP is one MLS unit and MIP tasks are MLS steps. The MIP is required input here — every run starts from a schema-valid MIP stamped with its `variant_id`. Every framework (evidence-based, Connected Learning, participatory budgeting) stays optional, and all framework UX (`--ask`, `--answers`, `--no-eb` / `--no-cl` / `--no-pb`) is LSB's, used verbatim.
-
-| Step | What it does | Lives in |
-|---|---|---|
-| [MIP run](schema/README.md) | Requires a MIP ([mip.schema.json](schema/mip.schema.json)), stamps its [variant_id](schema/variant_id.py), runs the LSB pipeline on it | This repo (`python -m sgmsb.run`) |
-| Decompose → validate → critic → stages → render | The LSB pipeline: 11 deterministic checks, 21-check reviewer, three optimisation stages, teacher cards | `lesson-scaffold-builder` package (`lsb-run`, `lsb-validate`, …) |
-| [Gates](prompts/smt/README.md) | SMT fit-check prompts (classify + 3 gates) with [golden evals](evals/golden/README.md) | This repo (`evals/`) |
-| [Agent kit](agent-kit/README.md) | Run a MIP in any chat assistant: paste-in, custom assistant, Claude Skill | This repo (`agent-kit/`) |
-
-The SMT originals (gate prompts, 32 framework cards, C1–C21 checklist, walkthroughs) are preserved under [prompts/smt/](prompts/smt/README.md), [frameworks/smt/](frameworks/smt/connected-learning.md) and [docs/smt/](docs/smt/README.md). The mapping between SMT checks/cards and LSB checks/cards is in [docs/smt-mapping.md](docs/smt-mapping.md).
-
-## Getting started
-
-Python 3.10+. Install the engine first, then this project:
+Python 3.10+. Install the engine first, then this wrapper:
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-python3 -m pip install -e ../lesson-scaffold-builder
-python3 -m pip install -e .
+pip install "git+https://github.com/ashitpatel/lesson-scaffold-builder.git"
+pip install -e .
 ```
 
-Run the offline checks (no model, no API key):
+## Run
 
 ```bash
-python -m unittest discover tests
-python evals/decision_model.py --strict
-python evals/run_gates.py --dry-run
-python schema/validate_examples.py
-python agent-kit/build.py --check
+python -m sgmsb.mip schema/examples/mip-variants.json --pick baseline --validate
+python -m sgmsb.run schema/examples/mip-variants.json --pick baseline --dry-run
 ```
 
-Run a MIP through the pipeline (see the [LSB README](https://github.com/ashitpatel/lesson-scaffold-builder) for backends):
+`sgmsb.mip --validate` reports the MIP-schema verdict plus the MLS verdict on its chunks (D10 regional terms deferred: chunking keeps MIP text verbatim and 05-decompose neutralises it). `sgmsb.run` writes `00-mip.json`, `00-chunks.json`, the chunk-sectioned source and merged answers into the run folder, delegates to `lsb.run`, then audits `choices.json` to prove the forced breakdown held.
 
-```bash
-python -m sgmsb.run path/to/mip.json --dry-run   # no API calls
-python -m sgmsb.run path/to/mip.json --ask       # LSB's framework questions
-python -m sgmsb.run path/to/mip.json --no-pb     # frameworks stay optional
-```
+## Caveats
 
-Or only convert a MIP to an MLS DAG and validate it:
-
-```bash
-python -m sgmsb.mip path/to/mip.json --validate
-```
-
-## Layout
-
-- `sgmsb/` — the adapter: `run` (MIP → LSB pipeline CLI) and `mip` (MIP → MLS conversion + CLI).
-- `schema/` — MIP + usage-event schemas, `variant_id.py`, examples.
-- `prompts/smt/`, `frameworks/smt/` — original SMT gate prompts and 32 cards.
-- `evals/` — gate fixtures, decision cases, golden references, recorded baseline.
-- `agent-kit/` — paste-in / custom-assistant / Skill delivery sources and generated `dist/`.
-- `docs/` — [SMT↔LSB mapping](docs/smt-mapping.md), [SMT docs](docs/smt/README.md); `reports/`, `research_notes/`, [EXPLORATION.md](EXPLORATION.md) — SMT analysis (reference).
-- Everything else (engine, LSB prompts/cards/schemas, browser kit, blog) lives in the `lesson-scaffold-builder` package.
-
-## License
-
-Code (`*.py`) and JSON schemas: [Apache-2.0](LICENSE). Content (prompts, cards, docs, walkthroughs, eval fixtures): [CC BY-SA-4.0](LICENSE-CONTENT).
+- D10 deferral is a design assumption: no live end-to-end run has yet shown 05-decompose neutralising every flagged term.
+- The model may refine chunk boundaries within LSB's code checks (e.g. sub-split a chunk); the chunks force the input structure and caps, not the exact outcome units.
+- `mls_id` values and MLS identifiers stay as LSB requires them (`MIP` in an id would trip D10's term match); the MIP vocabulary is user-facing.
+- The pre-wrapper SMT prototype (prompts, frameworks, evals, agent-kit, research notes) was removed; see git history. Usage-event telemetry belongs to the platform, not this wrapper.

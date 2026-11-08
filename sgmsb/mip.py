@@ -11,13 +11,13 @@ over 7 tasks spans units, since an MLS unit holds at most 7 steps).
 
 The adapter is mechanical on purpose: it validates the MIP against
 schema/mip.schema.json, assigns the stable content id from
-schema/variant_id.py (never invented by a model), and converts MIP tasks into
+sgmsb.variant_id (never invented by a model), and converts MIP tasks into
 an MLS_DAG_Sequence the sgmsb pipeline can run. Region-neutral wording is the
 pipeline's job (05-decompose strips it); the adapter keeps task text verbatim
 so D10 may flag terms like CRP until then.
 
 Conversion rules:
-  * macro_objective is the MIP objective, verbatim (SMT check C3).
+  * macro_objective is the MIP objective, verbatim.
   * tasks (by seq) become steps in order; sub_tasks are appended to the action
     text after a semicolon.
   * role is Peer_Facilitator when the task's x_transform names a student_role,
@@ -32,7 +32,6 @@ Conversion rules:
 from __future__ import annotations
 
 import argparse
-import importlib.util
 import json
 import re
 import sys
@@ -42,27 +41,16 @@ from jsonschema import Draft202012Validator
 
 from lsb import validate as v
 
+from sgmsb.variant_id import variant_id
+
 ROOT = Path(__file__).resolve().parents[1]
 MIP_SCHEMA = json.loads((ROOT / "schema" / "mip.schema.json").read_text(encoding="utf-8"))
 
 DURATION_RE = re.compile(r"(\d+)\s*(week|month)", re.IGNORECASE)
 
 
-def _variant_id_fn():
-    """Load variant_id() from schema/variant_id.py without touching sys.path."""
-    path = ROOT / "schema" / "variant_id.py"
-    spec = importlib.util.spec_from_file_location("sgmsb_variant_id", path)
-    module = importlib.util.module_from_spec(spec)
-    assert spec.loader is not None
-    spec.loader.exec_module(module)
-    return module.variant_id
-
-
-variant_id = _variant_id_fn()
-
-
 def validate_mip(mip: dict) -> list[str]:
-    """Schema errors for a MIP document; empty means valid (SMT check C1)."""
+    """Schema errors for a MIP document; empty means valid."""
     return [
         f"{'/'.join(map(str, e.path))}: {e.message}"
         for e in Draft202012Validator(MIP_SCHEMA).iter_errors(mip)

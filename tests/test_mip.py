@@ -31,9 +31,26 @@ def neutral_mip(n_tasks=4, **over):
 
 
 class VariantId(unittest.TestCase):
-    def test_matches_smt_example_stamp(self):
-        # The same content must get the same id as the SMT-authored example.
+    def test_matches_stored_example_stamp(self):
+        # The same content must get the same id as the stored example.
         self.assertEqual(mip.variant_id(EXAMPLES["baseline"]), "v1:9b87da2056165481")
+
+    def test_example_ids_match_content_and_parent_link(self):
+        # Folded in from schema/validate_examples.py: the stored ids are
+        # content-correct and the transformed variant links its baseline.
+        for key in ("baseline", "transformed"):
+            with self.subTest(key=key):
+                self.assertEqual(EXAMPLES[key]["x_transform"]["variant_id"],
+                                 mip.variant_id(EXAMPLES[key]))
+        self.assertEqual(EXAMPLES["transformed"]["x_transform"]["parent_variant_id"],
+                         EXAMPLES["baseline"]["x_transform"]["variant_id"])
+
+    def test_ignores_pipeline_metadata(self):
+        # Folded in from schema/validate_examples.py.
+        import copy
+        t = copy.deepcopy(EXAMPLES["transformed"])
+        t["x_transform"]["pipeline"]["revisions"] = 9
+        self.assertEqual(mip.variant_id(t), EXAMPLES["transformed"]["x_transform"]["variant_id"])
 
     def test_stable_and_shaped(self):
         a = mip.variant_id(neutral_mip())

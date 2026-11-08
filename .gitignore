@@ -15,6 +15,5 @@ Thumbs.db
 .env
 .env.*
 
-# Live run outputs (regenerate locally; the recorded SMT baseline lives in evals/baseline-20261106/)
+# Live run outputs (regenerate locally)
 runs/
-evals/runs/

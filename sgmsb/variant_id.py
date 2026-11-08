@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 """Stable content ids for MIP variants (see x_transform.variant_id in mip.schema.json).
 
-    python3 schema/variant_id.py path/to/mip.json    # prints the id
+    python -m sgmsb.variant_id path/to/mip.json    # prints the id
 
 The id depends only on the MIP's content: the id fields themselves and the
 pipeline metadata are removed before hashing, so re-running the pipeline with
