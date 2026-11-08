@@ -1,6 +1,6 @@
 # Walkthrough 2 — Teaching project teams to finish on time
 
-> A **reference answer** written by hand, not tool output. The starting plan is a **seed** authored for this example. Technical version: [evals/golden/time-knapsack.md](../../evals/golden/time-knapsack.md).
+> A **reference answer** written by hand, not tool output. The starting plan is a **seed** authored for this example. Technical version: [evals/golden/time-knapsack.md](../../../evals/golden/time-knapsack.md).
 
 | | |
 |---|---|

@@ -1,6 +1,6 @@
 # Walkthrough 11 — "Letters and Words" becomes a daily letters-and-sounds block
 
-> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), "Letters and Words" (English/FLN teacher, 1 month), a real catalogue MIP. The context (Class 1–2, few devices) is assumed. The same structure applies to akshara and matras in the regional-language period. Technical version: [evals/golden/catalogue-letters-and-sounds.md](../../evals/golden/catalogue-letters-and-sounds.md).
+> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), "Letters and Words" (English/FLN teacher, 1 month), a real catalogue MIP. The context (Class 1–2, few devices) is assumed. The same structure applies to akshara and matras in the regional-language period. Technical version: [evals/golden/catalogue-letters-and-sounds.md](../../../evals/golden/catalogue-letters-and-sounds.md).
 
 | | |
 |---|---|

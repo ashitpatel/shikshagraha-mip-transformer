@@ -2,7 +2,7 @@
 
 Plain-language documentation of what the MIP Transformer is for, how people would use it, and what it does to real Micro-Improvement Projects (MIPs) from Shikshagraha Commons.
 
-> **To try it now:** the [agent kit](../agent-kit/README.md) runs the method in any AI chat assistant (Claude, ChatGPT, Gemini, Copilot, including free tiers), with no install or API key. It's untested so far.
+> **To try it now:** the [agent kit](../../agent-kit/README.md) runs the method in any AI chat assistant (Claude, ChatGPT, Gemini, Copilot, including free tiers), with no install or API key. It's untested so far.
 >
 > **Read this first.** The pipeline (prompts, schema, reference cards) has been written but **not yet run live**. Every "after" in these walkthroughs is a **reference answer written by hand**: it's what the tool *should* produce, and it's used to test the tool. The user experience describes intended design; no interface exists yet.
 
@@ -13,7 +13,7 @@ Plain-language documentation of what the MIP Transformer is for, how people woul
 
 ## Walkthroughs: one per reference example
 
-Walkthroughs 9–12 show the four **evidence-based practices** added after the [evidence ranking](../reports/Education%20interventions%20evidence%20ranking.md). They rank highest as learning levers.
+Walkthroughs 9–12 show the four **evidence-based practices** added after the [evidence ranking](../../reports/Education interventions evidence ranking.md). They rank highest as learning levers.
 
 | # | Walkthrough | Starting point | Applied | Ruled out |
 |---|---|---|---|---|
@@ -34,9 +34,9 @@ Every walkthrough follows the same shape: **at a glance → the starting point �
 
 ## Going deeper
 - Rebuild the whole project with an AI coding agent: [regeneration-prompts.md](regeneration-prompts.md)
-- Why each decision was made: [EXPLORATION.md](../EXPLORATION.md)
-- Technical versions of the examples (used for testing): [evals/golden/](../evals/golden/README.md)
-- The methods, as the tool reads them: [frameworks/evidence-based-practices.md](../frameworks/evidence-based-practices.md), [frameworks/connected-learning.md](../frameworks/connected-learning.md), [frameworks/pb-techniques.md](../frameworks/pb-techniques.md)
-- How the tool works: [prompts/README.md](../prompts/README.md); data and logging: [schema/README.md](../schema/README.md)
+- Why each decision was made: [EXPLORATION.md](../../EXPLORATION.md)
+- Technical versions of the examples (used for testing): [evals/golden/](../../evals/golden/README.md)
+- The methods, as the tool reads them: [frameworks/evidence-based-practices.md](../../frameworks/smt/evidence-based-practices.md), [frameworks/connected-learning.md](../../frameworks/smt/connected-learning.md), [frameworks/pb-techniques.md](../../frameworks/smt/pb-techniques.md)
+- How the tool works: [prompts/README.md](../../prompts/smt/README.md); data and logging: [schema/README.md](../../schema/README.md)
 
 *Source materials are from Shikshagraha Commons (CC BY-SA); derivative content here should carry the same licence and attribution.*

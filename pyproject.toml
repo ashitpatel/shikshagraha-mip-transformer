@@ -1,0 +1,22 @@
+[project]
+name = "shikshagraha-mip-scaffold-builder"
+version = "0.1.0"
+description = "Shikshagraha MIP Transformer capabilities on the lesson-scaffold-builder engine: MIP in, validated MLS DAG, teacher cards out."
+readme = "README.md"
+requires-python = ">=3.10,<3.15"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "lesson-scaffold-builder>=0.1",
+    "jsonschema>=4.18,<5",
+    "anthropic>=0.39,<1",
+]
+
+[project.optional-dependencies]
+dev = []
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["sgmsb*"]

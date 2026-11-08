@@ -2,7 +2,7 @@
 
 Run the MIP Transformer in **any AI chat assistant** (Claude, ChatGPT, Gemini, Copilot and others), including **free tiers**. Nothing to install, no Python, no API key. You paste or upload a Micro-Improvement Project (MIP) from Shikshagraha Commons. The assistant checks which methods fit (evidence-based practices, Connected Learning, participatory budgeting), revises the MIP only where they do, reviews its own work against 21 checks, and gives you one-page teacher cards for the original and the revised plan.
 
-> **Status: untested.** These packages were assembled from the project's reviewed method (cards, checklist, prompts), but **no one has run them on any assistant yet**. Results will vary by assistant and by free-tier model. Before relying on the output, try it on one of the [walkthrough MIPs](../docs/walkthroughs/) and compare. Platform details below come from secondary sources as of November 2026 and change often; check each provider's current help pages.
+> **Status: untested.** These packages were assembled from the project's reviewed method (cards, checklist, prompts), but **no one has run them on any assistant yet**. Results will vary by assistant and by free-tier model. Before relying on the output, try it on one of the [walkthrough MIPs](../docs/smt/walkthroughs/) and compare. Platform details below come from secondary sources as of November 2026 and change often; check each provider's current help pages.
 
 ## Which file do I use?
 
@@ -78,8 +78,8 @@ The build checks:
 - the instruction size (≤8,000 characters) and the lite size (≤24,000 characters);
 - that every card ID and checks C1–C21 appear in every package, and that the number of checks named in the instructions matches the checklist;
 - that every compact card keeps a supportable claim;
-- that the checklist has the same number of checks as `prompts/50-critic.md`.
+- that the checklist has the same number of checks as `prompts/smt/50-critic.md`.
 
-**Keep `src/review-checklist.md` in step with `prompts/50-critic.md`** when either changes. The Python test runner in `evals/` stays a developer tool; end users never need it.
+**Keep `src/review-checklist.md` in step with `prompts/smt/50-critic.md`** when either changes. The Python test runner in `evals/` stays a developer tool; end users never need it.
 
 *Licence: method content derives from Shikshagraha Commons materials (CC BY-SA). Keep attribution on derived teacher cards.*

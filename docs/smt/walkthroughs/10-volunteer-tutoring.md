@@ -1,6 +1,6 @@
 # Walkthrough 10 — "Community Chaupal" becomes in-school volunteer tutoring
 
-> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), "Community Chaupal" (Head Teachers, 2 weeks), a real catalogue MIP. The context (many Class 3–5 non-readers; local youth and mothers willing to help) is assumed. Technical version: [evals/golden/catalogue-tutoring-chaupal.md](../../evals/golden/catalogue-tutoring-chaupal.md).
+> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), "Community Chaupal" (Head Teachers, 2 weeks), a real catalogue MIP. The context (many Class 3–5 non-readers; local youth and mothers willing to help) is assumed. Technical version: [evals/golden/catalogue-tutoring-chaupal.md](../../../evals/golden/catalogue-tutoring-chaupal.md).
 
 | | |
 |---|---|

@@ -1,6 +1,6 @@
 # Walkthrough 4 — Learning Centre "Neighbourhood month": interest circles and everyday mentors
 
-> A **reference answer** written by hand, not tool output. Source: Shikshagraha Commons resource **#753**, *Learning Centre Play Book* (Vidhya Vidhai Foundation; Katral Koodam Learning Centres, Coimbatore). Technical version: [evals/golden/learning-centre-playbook.md](../../evals/golden/learning-centre-playbook.md).
+> A **reference answer** written by hand, not tool output. Source: Shikshagraha Commons resource **#753**, *Learning Centre Play Book* (Vidhya Vidhai Foundation; Katral Koodam Learning Centres, Coimbatore). Technical version: [evals/golden/learning-centre-playbook.md](../../../evals/golden/learning-centre-playbook.md).
 
 | | |
 |---|---|

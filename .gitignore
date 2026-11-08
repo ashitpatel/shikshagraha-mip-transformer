@@ -1,18 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+venv/
+
 # OS and editor files
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
 
-# Python
-__pycache__/
-*.pyc
-.venv/
-venv/
-
 # Secrets and local config
 .env
 .env.*
 
-# Live test outputs (regenerate with python3 evals/run_gates.py)
+# Live run outputs (regenerate locally; the recorded SMT baseline lives in evals/baseline-20261106/)
+runs/
 evals/runs/

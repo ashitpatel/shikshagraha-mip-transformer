@@ -1,6 +1,6 @@
 # Walkthrough 12 — Weekly lesson observation and feedback on the state lesson guides
 
-> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), "School observation and feedback for teachers" (HMs, 2 weeks), a real catalogue MIP. The context (NIPUN Bharat guides and workbooks in daily use in Classes 1–3) is assumed. Technical version: [evals/golden/catalogue-observation-fidelity-loop.md](../../evals/golden/catalogue-observation-fidelity-loop.md).
+> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), "School observation and feedback for teachers" (HMs, 2 weeks), a real catalogue MIP. The context (NIPUN Bharat guides and workbooks in daily use in Classes 1–3) is assumed. Technical version: [evals/golden/catalogue-observation-fidelity-loop.md](../../../evals/golden/catalogue-observation-fidelity-loop.md).
 
 | | |
 |---|---|

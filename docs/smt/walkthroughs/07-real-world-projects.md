@@ -1,6 +1,6 @@
 # Walkthrough 7 — "Real World Projects": students pick the problem
 
-> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), sheet *Cur & Ped & Ass*, "Real World Projects", a real catalogue MIP. Technical version: [evals/golden/catalogue-real-world-projects.md](../../evals/golden/catalogue-real-world-projects.md).
+> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), sheet *Cur & Ped & Ass*, "Real World Projects", a real catalogue MIP. Technical version: [evals/golden/catalogue-real-world-projects.md](../../../evals/golden/catalogue-real-world-projects.md).
 
 | | |
 |---|---|

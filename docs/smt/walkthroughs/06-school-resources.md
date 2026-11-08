@@ -1,6 +1,6 @@
 # Walkthrough 6 — "School resources": needs prioritised with the SMC
 
-> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), sheet *Access & Infra*, "School resources", a real catalogue MIP. Technical version: [evals/golden/catalogue-school-resources.md](../../evals/golden/catalogue-school-resources.md).
+> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), sheet *Access & Infra*, "School resources", a real catalogue MIP. Technical version: [evals/golden/catalogue-school-resources.md](../../../evals/golden/catalogue-school-resources.md).
 
 | | |
 |---|---|

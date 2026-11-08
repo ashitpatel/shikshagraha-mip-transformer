@@ -1,6 +1,6 @@
 # The end-to-end journey
 
-> **Status:** design intent. Steps 1–5 and the teacher cards can now be run conversationally in any AI chat assistant with the [agent kit](../../agent-kit/README.md) (untested). Choosing between versions, reporting outcomes and patterns across schools (steps 6–11) need a platform and aren't built. Step numbers match the pipeline in [prompts/README.md](../../prompts/README.md).
+> **Status:** design intent. Steps 1–5 and the teacher cards can now be run conversationally in any AI chat assistant with the [agent kit](../../../agent-kit/README.md) (untested). Choosing between versions, reporting outcomes and patterns across schools (steps 6–11) need a platform and aren't built. Step numbers match the pipeline in [prompts/smt/README.md](../../../prompts/smt/README.md).
 
 ```
  AUTHOR                                   OWNER (HM / teacher)                        LATER
@@ -55,7 +55,7 @@ They can edit, reject, or publish it next to the original.
 ## Afterwards
 
 **10. Report the outcome.** Which success indicators were met (yes / partly / no / not measured), a 1–5 usefulness rating, rough effort, would you repeat it, any safeguarding concern (flag only; details go through the platform's process). Optionally, an improvement story in Shikshagraha's existing story format.
-**No student-level data is ever recorded**: only class or school totals. See [schema/README.md](../../schema/README.md).
+**No student-level data is ever recorded**: only class or school totals. See [schema/README.md](../../../schema/README.md).
 
 **11. Patterns across schools (optional, later).** Once enough schools have used both versions, simple comparisons show which revised versions are chosen, finished and rated well, by type of MIP. Only if real differences show up might the platform suggest which version to *show first*. It still never chooses for the owner.
 

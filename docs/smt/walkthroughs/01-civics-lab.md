@@ -1,6 +1,6 @@
 # Walkthrough 1 — Students decide how to improve a shared school space
 
-> A **reference answer** written by hand, not output from the tool (the pipeline hasn't been run live yet). The starting plan was **authored for this example** (a "seed"), because the Civics Lab was proposed as a new MIP. Technical version: [evals/golden/civics-lab.md](../../evals/golden/civics-lab.md).
+> A **reference answer** written by hand, not output from the tool (the pipeline hasn't been run live yet). The starting plan was **authored for this example** (a "seed"), because the Civics Lab was proposed as a new MIP. Technical version: [evals/golden/civics-lab.md](../../../evals/golden/civics-lab.md).
 
 | | |
 |---|---|

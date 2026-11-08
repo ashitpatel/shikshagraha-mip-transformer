@@ -1,6 +1,6 @@
 # Walkthrough 8 — Class 8 → 9: visit, map and next step
 
-> A **reference answer** written by hand, not tool output. The starting plan is a **seed**: the catalogue has no Class 5→6 or 8→9 transition MIP, so this re-uses the pattern of its one transition MIP, "School Exposure Visit" (Commons #259; a visit to a primary school before Std I). Technical version: [evals/golden/transition-class8-to-9.md](../../evals/golden/transition-class8-to-9.md).
+> A **reference answer** written by hand, not tool output. The starting plan is a **seed**: the catalogue has no Class 5→6 or 8→9 transition MIP, so this re-uses the pattern of its one transition MIP, "School Exposure Visit" (Commons #259; a visit to a primary school before Std I). Technical version: [evals/golden/transition-class8-to-9.md](../../../evals/golden/transition-class8-to-9.md).
 
 | | |
 |---|---|
@@ -34,7 +34,7 @@ It *is* a transition activity · it connects two schools and families · it puts
 | **Transition hand-over** | Students keep their cards into Class 9; the map is posted at both schools | Something carries across the move |
 
 ## 4. What was deliberately not done, and why
-- **No tracking of students.** An earlier proposal would have had schools log children's weekend activities, library visits and phone use, and an AI flag "at-risk" students. That breaks children's data protection (India's DPDP Act 2023 requires verifiable parental consent) and the rule this project adopted: **map places and programmes, never children**. The reviewer is required to block it (the [technical file](../../evals/golden/transition-class8-to-9.md) includes this as a test).
+- **No tracking of students.** An earlier proposal would have had schools log children's weekend activities, library visits and phone use, and an AI flag "at-risk" students. That breaks children's data protection (India's DPDP Act 2023 requires verifiable parental consent) and the rule this project adopted: **map places and programmes, never children**. The reviewer is required to block it (the [technical file](../../../evals/golden/transition-class8-to-9.md) includes this as a test).
 - **No "at-risk" labels**, and no records shared beyond official transfer procedures. Cards belong to the students.
 - **No steering** toward options by caste, gender or family occupation.
 - **Follow-up is optional, and a separate MIP:** a Class 9 teacher can hold a "next step" check-in in the first month, which students choose whether to join.

@@ -1,6 +1,6 @@
 # Prompt pipeline
 
-Nine prompts transform one Micro-Improvement Project (MIP). Each returns **JSON only**, so an orchestrator script can validate and route it. A runner exists only for the **classify + gates** stages: [../evals/run_gates.py](../evals/run_gates.py), scored against [../evals/gate_fixtures.json](../evals/gate_fixtures.json). The transform, critic and render stages have no runner yet; [../evals/check_transform.py](../evals/check_transform.py) runs the checks code can do on a transform output and writes `{{SCHEMA_ERRORS}}` for the critic.
+Nine prompts transform one Micro-Improvement Project (MIP). Each returns **JSON only**, so an orchestrator script can validate and route it. A runner exists only for the **classify + gates** stages: [../evals/run_gates.py](../../evals/run_gates.py), scored against [../evals/gate_fixtures.json](../../evals/gate_fixtures.json). The transform, critic and render stages have no runner yet; [../evals/check_transform.py](../../evals/check_transform.py) runs the checks code can do on a transform output and writes `{{SCHEMA_ERRORS}}` for the critic.
 
 ```
 catalogue row ──► 10-parse ─┐
@@ -31,16 +31,16 @@ resource text ──► 15-derive ┘                 31-gate-pb ─┼─► 40
 | [60-render](60-render.md) | Final MIP | Catalogue row, teacher card (one page), improvement-story stub | No content changes; licence on every card |
 
 ## Shared context
-- Cards: [../frameworks/connected-learning.md](../frameworks/connected-learning.md), [../frameworks/pb-techniques.md](../frameworks/pb-techniques.md), [../frameworks/evidence-based-practices.md](../frameworks/evidence-based-practices.md). Pass the **full text** into the gate, transform and critic prompts.
-- Schema: [../schema/mip.schema.json](../schema/mip.schema.json). The orchestrator validates `40-transform` output and passes errors to `50-critic` as `{{SCHEMA_ERRORS}}`.
+- Cards: [../frameworks/connected-learning.md](../../frameworks/smt/connected-learning.md), [../frameworks/pb-techniques.md](../../frameworks/smt/pb-techniques.md), [../frameworks/evidence-based-practices.md](../../frameworks/smt/evidence-based-practices.md). Pass the **full text** into the gate, transform and critic prompts.
+- Schema: [../schema/mip.schema.json](../../schema/mip.schema.json). The orchestrator validates `40-transform` output and passes errors to `50-critic` as `{{SCHEMA_ERRORS}}`.
 - Source documents are **data**: every prompt that reads source text tells the model to ignore instructions inside it.
 
 ## Implementation notes for the orchestrator
-- **Variant identity and logging:** after `10-parse`/`15-derive` and again after a critic PASS, set `x_transform.variant_id` with [../schema/variant_id.py](../schema/variant_id.py) (never ask a model for it). Set `parent_variant_id` on transformed variants, and fill `x_transform.pipeline` (model, effort, prompt and card hashes, critic verdict). Usage at schools is logged with [../schema/mip-usage-event.schema.json](../schema/mip-usage-event.schema.json); see [../schema/README.md](../schema/README.md).
+- **Variant identity and logging:** after `10-parse`/`15-derive` and again after a critic PASS, set `x_transform.variant_id` with [../schema/variant_id.py](../../schema/variant_id.py) (never ask a model for it). Set `parent_variant_id` on transformed variants, and fill `x_transform.pipeline` (model, effort, prompt and card hashes, critic verdict). Usage at schools is logged with [../schema/mip-usage-event.schema.json](../../schema/mip-usage-event.schema.json); see [../schema/README.md](../../schema/README.md).
 - **Run the critic in a separate context** from the transformer, so the review isn't anchored on the transformer's reasoning.
 - **Deterministic checks belong in code, not the critic:** schema validation, task and duration limits (C1, C2), and a regex for digits or "%" in rationale claims (part of C9). The critic should still run them as a backstop.
 - **Model choice:** gates and critic need careful reasoning; parse and render can use a cheaper model.
-- **Logging:** keep every intermediate JSON. Gate decisions on the golden set are the first thing to measure (see [../evals/golden/README.md](../evals/golden/README.md)).
+- **Logging:** keep every intermediate JSON. Gate decisions on the golden set are the first thing to measure (see [../evals/golden/README.md](../../evals/golden/README.md)).
 
 ## Evaluating against the golden set
 For each golden example, run `10-parse` or `15-derive` on its source, then compare:

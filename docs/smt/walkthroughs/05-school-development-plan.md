@@ -1,6 +1,6 @@
 # Walkthrough 5 — Choosing the school's priorities together (School Development Plan)
 
-> A **reference answer** written by hand, not tool output. Source: Shikshagraha Commons resource **#751**, *School Development Plan* (Vidhya Vidhai Foundation). Technical version: [evals/golden/school-development-plan.md](../../evals/golden/school-development-plan.md).
+> A **reference answer** written by hand, not tool output. Source: Shikshagraha Commons resource **#751**, *School Development Plan* (Vidhya Vidhai Foundation). Technical version: [evals/golden/school-development-plan.md](../../../evals/golden/school-development-plan.md).
 
 | | |
 |---|---|

@@ -27,7 +27,7 @@ sys.path.insert(0, str(ROOT / "schema"))
 from variant_id import variant_id  # noqa: E402
 
 SCHEMA = json.loads((ROOT / "schema" / "mip.schema.json").read_text(encoding="utf-8"))
-EB_TEXT = (ROOT / "frameworks" / "evidence-based-practices.md").read_text(encoding="utf-8")
+EB_TEXT = (ROOT / "frameworks" / "smt" / "evidence-based-practices.md").read_text(encoding="utf-8")
 EB_CLAIMS = " ".join(re.findall(r"\"([^\"]+)\"", " ".join(
     l for l in EB_TEXT.splitlines() if "Supportable claims" in l)))
 

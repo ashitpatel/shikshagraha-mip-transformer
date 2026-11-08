@@ -1,6 +1,6 @@
 # Walkthrough 3 — SLATE Land 1, with house interest themes
 
-> A **reference answer** written by hand, not tool output. Source: Shikshagraha Commons resource **#750**, *SLATE – Language Adventure* (Vidhya Vidhai Foundation). Technical version: [evals/golden/slate-language-adventure.md](../../evals/golden/slate-language-adventure.md).
+> A **reference answer** written by hand, not tool output. Source: Shikshagraha Commons resource **#750**, *SLATE – Language Adventure* (Vidhya Vidhai Foundation). Technical version: [evals/golden/slate-language-adventure.md](../../../evals/golden/slate-language-adventure.md).
 
 | | |
 |---|---|

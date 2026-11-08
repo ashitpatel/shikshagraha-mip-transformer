@@ -57,8 +57,8 @@ A set of agent prompts that takes a **Micro-Improvement Project (MIP) template**
 
 > **Status (2026-11-04):**
 > - **Built:** `schema/` (plus usage logging), `frameworks/` (verified citations), `evals/golden/` (12 examples), `prompts/` (9 prompts), `evals/run_gates.py` (developer test of classify and gates), `docs/` (UX and 12 walkthroughs), and **`agent-kit/`**. The agent kit is an agent-independent, no-install version for any chat assistant: a paste-in prompt (full or lite) for free tiers, a custom-assistant package, a Claude Skill, and a reviewer prompt, all generated from one source by `agent-kit/build.py`.
-> - **Added after the evidence scan:** `frameworks/evidence-based-practices.md`, with the Tier 1 practices from `reports/Education interventions evidence ranking.md`, a new fit check (`prompts/32-gate-eb.md`), critic check C20, and the EB gate in the test fixtures and the agent kit.
-> - **Not done:** live runs of anything; practitioner review; (Golden Examples 9–12 and walkthroughs 9–12 now cover all four Tier 1 practices; Tier 2 has pilot cards in `frameworks/evidence-based-practices.md`.)
+> - **Added after the evidence scan:** `frameworks/smt/evidence-based-practices.md`, with the Tier 1 practices from `reports/Education interventions evidence ranking.md`, a new fit check (`prompts/smt/32-gate-eb.md`), critic check C20, and the EB gate in the test fixtures and the agent kit.
+> - **Not done:** live runs of anything; practitioner review; (Golden Examples 9–12 and walkthroughs 9–12 now cover all four Tier 1 practices; Tier 2 has pilot cards in `frameworks/smt/evidence-based-practices.md`.)
 
 ```
 ShikshagrahaMIPTransformer/
@@ -150,7 +150,7 @@ The examples: **SLATE Language Adventure**, **Learning Centre Play Book**, and *
 
 | # | Example | Problem | Why it matters | Fix |
 |---|---|---|---|---|
-| 1 | SLATE | **Made-up evidence:** "Dr. Ito's research demonstrates … learning retention triples compared to standard worksheets." | Ito's Connected Learning research is mostly ethnographic and design-based. I know of no finding like this. A golden example with an invented statistic teaches the transformer to invent statistics, which is the worst failure for a tool practitioners will trust. | Delete it. Rationales may cite only claims from a vetted reference card (`frameworks/connected-learning.md`) and must not quote numbers without a source. |
+| 1 | SLATE | **Made-up evidence:** "Dr. Ito's research demonstrates … learning retention triples compared to standard worksheets." | Ito's Connected Learning research is mostly ethnographic and design-based. I know of no finding like this. A golden example with an invented statistic teaches the transformer to invent statistics, which is the worst failure for a tool practitioners will trust. | Delete it. Rationales may cite only claims from a vetted reference card (`frameworks/smt/connected-learning.md`) and must not quote numbers without a source. |
 | 2 | SLATE | **Replaces foundational phonics** with storytelling. | SLATE targets phonological awareness and word recognition: foundational literacy, where the evidence and national FLN policy (NIPUN Bharat) favour systematic, structured instruction. Dropping the sequence changes the MIP's objective. | **Add, don't replace.** Keep the 4-land phonics sequence. Each land ends with a squad-made story (spoken, drawn, or recorded) on a theme students choose, using that land's target words. |
 | 3 | SLATE | **Children's voices and photos in an open cross-district gallery.** | Child safeguarding. India's DPDP Act 2023 requires verifiable parental consent to process children's data. Device access is also uneven. | Offline by default (class or school display). Sharing digitally needs parental consent, no faces or full names, and teacher moderation. |
 | 4 | All three | **The "befores" are caricatures** ("rigid", "compliant feedback", "chore"), and they don't appear to be the real Commons text. | If the "before" is weakened, every "after" looks like an improvement, and the eval measures nothing. | The "before" must be **quoted from the actual Commons resource**, with its resource ID. |
@@ -282,7 +282,7 @@ So this is best treated as a **narrow extension of the Connected Learning cards*
 - **Incremental value is modest**, because asset mapping already exists in the Play Book and the SMC module. The most distinctive additions are **brokering** and **transitions**.
 
 **Adopted (2026-11-04):**
-- `CL-asset-map`, `CL-brokering`, `CL-transitions` and guardrail **CL-G9** (map assets, never children) are in `frameworks/connected-learning.md`, with sources S4 (verified) and S5 (secondary only).
+- `CL-asset-map`, `CL-brokering`, `CL-transitions` and guardrail **CL-G9** (map assets, never children) are in `frameworks/smt/connected-learning.md`, with sources S4 (verified) and S5 (secondary only).
 - Critic check **C19** (blocker).
 - `20-classify` now records `transition_year` and a child-tracking risk flag; `30-gate-cl` handles both.
 - Golden Example 8, [evals/golden/transition-class8-to-9.md](evals/golden/transition-class8-to-9.md), plus gate fixture 8. The catalogue's only transition MIP is "School Exposure Visit" (entry to Std I), so the baseline re-targets that pattern to Class 8→9 and is flagged as a seed. It includes a critic test: a tracking variant must fail C19.

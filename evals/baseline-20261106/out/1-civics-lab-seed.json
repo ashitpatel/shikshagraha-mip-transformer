@@ -1,0 +1,125 @@
+{
+  "id": "1-civics-lab-seed",
+  "classification": {
+    "owner_type": "HM",
+    "student_learning_experience": {
+      "present": true,
+      "where": [1, 2, 6],
+      "note": "the student cabinet is briefed (task 1), lists problems in shared spaces (task 2) and sets up a care rota (task 6); the HM collects quotes and decides alone (tasks 3-4)"
+    },
+    "student_role": "participant",
+    "students_core": false,
+    "objective_is_learning": false,
+    "subject_teaching": false,
+    "foundational_literacy_numeracy": false,
+    "below_grade_level": "unknown",
+    "state_materials_in_use": "unknown",
+    "planning_only": false,
+    "protected_slot_feasible": "unknown",
+    "volunteers_available": "unknown",
+    "constituency": {
+      "present": true,
+      "who": "student cabinet, representing students who use the shared spaces every day; the fund is SMC-approved"
+    },
+    "shared_resource": {
+      "kind": "money",
+      "amount_confirmed": "yes",
+      "amount": 20000,
+      "source": "SMC-approved discretionary fund for this term, not earmarked (owner claim in CONTEXT)",
+      "choice_among_costed_items": true
+    },
+    "competing_options": {
+      "count": 4,
+      "decision_task_seq": 4,
+      "note": "task 2 lists problems across shared spaces (playground, corridors, library corner, toilets area); task 3 prices possible improvements; task 4 the HM alone decides which to fund within the amount"
+    },
+    "public_outcome": "within_school",
+    "already_present": {
+      "CL-interests": "none",
+      "CL-peers": "tasks 2, 6: cabinet members work as a group to list problems and set up a rota (no peer teaching or feedback)",
+      "CL-relationships": "none",
+      "CL-opportunities": "none",
+      "CL-production": "none",
+      "CL-shared-purpose": "tasks 1, 6: cabinet briefed on a common goal and takes shared care of the space via a rota; the funding decision (task 4) is the HM's alone",
+      "CL-connections-across-settings": "none",
+      "CL-audience": "none",
+      "CL-asset-map": "none",
+      "CL-brokering": "none",
+      "CL-transitions": "none",
+      "PB-ideas": "task 2: cabinet lists problems in shared spaces (no evidence requirement)",
+      "PB-prioritise": "none",
+      "PB-vetting": "task 3: HM collects price quotes for possible improvements",
+      "PB-report-back": "none",
+      "EB-level-grouping": "none",
+      "EB-tutoring": "none",
+      "EB-akshara": "none",
+      "EB-fidelity-loop": "none",
+      "EB-measure": "none"
+    },
+    "risk_flags": [],
+    "transition_year": "unknown",
+    "size": { "duration_weeks": 4, "task_count": 6 }
+  },
+  "gate_cl": {
+    "connected_learning": {
+      "decision": "PARTIAL",
+      "reason": "Students take part (tasks 1, 2, 6) but the HM-owned MIP's main activity is improving a space, so student participation is incidental (students_core false): at most one target. The cabinet is consulted but the funding decision (task 4) is the HM's alone, so shared purpose is the real gap, closable by a co-planning step within task 4.",
+      "cards": ["CL-shared-purpose"]
+    },
+    "credit": [
+      "CL-peers: tasks 2, 6 cabinet works as a group to list problems and set up a rota",
+      "CL-shared-purpose (partial): tasks 1, 6 cabinet briefed on a common goal and shares care of the space"
+    ],
+    "constraints": ["keep the objective (CL-G1)", "offline (CL-G4)", "within micro limits: ≤8 weeks, ≤9 tasks, ≤2 added tasks (CL-G7)"],
+    "relevant_guardrails": ["CL-G2", "CL-G3", "CL-G6", "CL-G7"]
+  },
+  "gate_pb": {
+    "pb_process": {
+      "decision": "APPLY",
+      "reason": "A constituency (student cabinet / students using the space) and a shared money resource (SMC-approved ₹20,000) are present; the public outcome is met by adding a report-back task.",
+      "cards": ["PB-scope"]
+    },
+    "pb_prioritise": {
+      "decision": "APPLY",
+      "reason": "Task 2 generates several competing needs across shared spaces and the choice of what to improve for all students is legitimately collective; a ballot step goes before the decision in task 4.",
+      "cards": ["PB-prioritise"]
+    },
+    "pb_allocate": {
+      "decision": "APPLY",
+      "reason": "A group votes (pb_process and pb_prioritise APPLY), the amount is confirmed (₹20,000, discretionary, not earmarked, per CONTEXT) and the MIP chooses among costed items (task 3 quotes) that task 4 must fit within the amount.",
+      "cards": ["PB-allocate-knapsack", "PB-count-greedy"],
+      "condition": ""
+    },
+    "budget_capped_choice": {
+      "decision": "ABSTAIN",
+      "reason": "pb_process is APPLY, so knapsack reasoning is used under the PB process itself, not as an unlabelled borrowing.",
+      "cards": ["PB-not-pb"]
+    },
+    "credit": [
+      "PB-ideas: task 2 cabinet already lists problems in shared spaces",
+      "PB-vetting: task 3 HM already collects price quotes"
+    ],
+    "constraints": [
+      "ballots advisory to SMC agreement (PB-G5)",
+      "student voice is an addition to SMC practice; label it as such",
+      "adults handle money: procurement stays with the HM/SMC (PB-G2)",
+      "counting rule announced before voting (PB-G6)",
+      "add one report-back task to the constituency (PB-report-back)"
+    ],
+    "relevant_guardrails": ["PB-G1", "PB-G2", "PB-G3", "PB-G4", "PB-G5", "PB-G6", "PB-G7", "PB-G8"]
+  },
+  "gate_eb": {
+    "evidence_based": {
+      "decision": "ABSTAIN",
+      "reason": "Not foundational and below_grade_level is not 'yes' (step 1 not triggered); no subject teaching or fitting Tier 2 card; not planning-only and the objective (improving a shared space) is not learning. This is an engagement/infrastructure MIP.",
+      "cards": [],
+      "tier": null,
+      "condition": ""
+    },
+    "open_questions": [],
+    "credit": [],
+    "non_negotiables_missing": [],
+    "constraints": [],
+    "relevant_guardrails": []
+  }
+}

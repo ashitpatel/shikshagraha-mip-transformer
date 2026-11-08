@@ -3,6 +3,7 @@
 """Build the agent-independent MIP Transformer packages from one source.
 
     python3 agent-kit/build.py
+    python3 agent-kit/build.py --check  # fail if dist/ is stale (zips compared by presence only)
 
 Maintainers only: end users never run this. It reads agent-kit/src/*.md and
 frameworks/*.md and writes agent-kit/dist/:
@@ -18,9 +19,11 @@ It also checks size limits and that every card and checklist ID survives packagi
 
 from __future__ import annotations
 
+import argparse
 import re
 import shutil
 import sys
+import tempfile
 from pathlib import Path
 
 KIT = Path(__file__).resolve().parent
@@ -146,22 +149,22 @@ def write(path: Path, text: str) -> None:
 
 # ---------------------------------------------------------------- build
 
-def main() -> int:
+def build() -> list[str]:
     core = read(SRC / "core-instructions.md")
     checklist = read(SRC / "review-checklist.md")
     template = read(SRC / "card-template.md")
     reviewer = read(SRC / "reviewer-instructions.md")
-    cl_full = full_cards("CARDS-CL", ROOT / "frameworks" / "connected-learning.md")
-    pb_full = full_cards("CARDS-PB", ROOT / "frameworks" / "pb-techniques.md")
-    eb_full = full_cards("CARDS-EB", ROOT / "frameworks" / "evidence-based-practices.md")
+    cl_full = full_cards("CARDS-CL", ROOT / "frameworks" / "smt" / "connected-learning.md")
+    pb_full = full_cards("CARDS-PB", ROOT / "frameworks" / "smt" / "pb-techniques.md")
+    eb_full = full_cards("CARDS-EB", ROOT / "frameworks" / "smt" / "evidence-based-practices.md")
     eb_compact, eb_ids = compact_cards(
-        "CARDS-EB", ROOT / "frameworks" / "evidence-based-practices.md", stop_at="## Tier 2",
+        "CARDS-EB", ROOT / "frameworks" / "smt" / "evidence-based-practices.md", stop_at="## Tier 2",
         note="(Tier 2 pilot cards EB-retrieval, EB-slate-feedback and EB-maths-representations are in the full version only.)")
-    eb_compact_all, _ = compact_cards("CARDS-EB", ROOT / "frameworks" / "evidence-based-practices.md")
-    eb_t2_ids = [i for i in re.findall(r"^### (EB-[a-z-]+)", read(ROOT / "frameworks" / "evidence-based-practices.md"), flags=re.M)
+    eb_compact_all, _ = compact_cards("CARDS-EB", ROOT / "frameworks" / "smt" / "evidence-based-practices.md")
+    eb_t2_ids = [i for i in re.findall(r"^### (EB-[a-z-]+)", read(ROOT / "frameworks" / "smt" / "evidence-based-practices.md"), flags=re.M)
                  if i not in eb_ids]
-    cl_compact, cl_ids = compact_cards("CARDS-CL", ROOT / "frameworks" / "connected-learning.md")
-    pb_compact, pb_ids = compact_cards("CARDS-PB", ROOT / "frameworks" / "pb-techniques.md")
+    cl_compact, cl_ids = compact_cards("CARDS-CL", ROOT / "frameworks" / "smt" / "connected-learning.md")
+    pb_compact, pb_ids = compact_cards("CARDS-PB", ROOT / "frameworks" / "smt" / "pb-techniques.md")
     template_no_example = template.split("## Example")[0].rstrip() + "\n"
 
     if DIST.exists():
@@ -234,9 +237,9 @@ def main() -> int:
                         f"but the checklist has {n_checklist}")
     if any(len(t) < 20 for t in re.findall(r"Can say: (\"[^\"]*\")", eb_compact + cl_compact + pb_compact)):
         problems.append("a compact card lost its supportable claim")
-    critic = read(ROOT / "prompts" / "50-critic.md")
+    critic = read(ROOT / "prompts" / "smt" / "50-critic.md")
     if len(re.findall(r"^\| C\d+ \|", critic, flags=re.M)) != len(re.findall(r"^\| C\d+ \|", checklist, flags=re.M)):
-        problems.append("review checklist and prompts/50-critic.md have different numbers of checks")
+        problems.append("review checklist and prompts/smt/50-critic.md have different numbers of checks")
     if "references/" not in skill_body:
         problems.append("SKILL.md lost its pointer to references/")
 
@@ -248,9 +251,47 @@ def main() -> int:
     print(f"\nCards packaged: {len(eb_ids) + len(eb_t2_ids)} EB ({len(eb_t2_ids)} Tier 2 pilot, full packages only) + {len(cl_ids)} CL + {len(pb_ids)} PB")
     if problems:
         print("\nPROBLEMS:\n  " + "\n  ".join(problems))
-        return 1
-    print("All checks passed.")
-    return 0
+    else:
+        print("All checks passed.")
+    return problems
+
+
+def stale_against(reference: Path) -> list[str]:
+    """Files under DIST that differ from a fresh build in reference/ (zips: presence only)."""
+    stale = []
+    fresh = {p.relative_to(reference) for p in reference.rglob("*") if p.is_file() and p.suffix != ".zip"}
+    live = {p.relative_to(DIST) for p in DIST.rglob("*") if p.is_file() and p.suffix != ".zip"} if DIST.exists() else set()
+    for rel in sorted(fresh | live):
+        a, b = reference / rel, DIST / rel
+        if not b.exists() or not a.exists() or a.read_bytes() != b.read_bytes():
+            stale.append(str(rel))
+    if not list(DIST.glob("claude-skill/*.zip")):
+        stale.append("claude-skill/mip-transformer.zip (missing)")
+    return stale
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--check", action="store_true", help="verify dist/ matches a fresh build")
+    args = ap.parse_args(argv)
+    if args.check:
+        global DIST
+        live, DIST = DIST, Path(tempfile.mkdtemp(prefix="agent-kit-check-")) / "dist"
+        try:
+            problems = build()
+        finally:
+            fresh_dir, DIST = DIST, live
+        if problems:
+            return 1
+        stale = stale_against(fresh_dir)
+        shutil.rmtree(fresh_dir.parent, ignore_errors=True)
+        if stale:
+            print("agent-kit/dist is stale; run python3 agent-kit/build.py. Stale files:")
+            print("\n".join(f"  {p}" for p in stale))
+            return 1
+        print("agent-kit/dist is up to date.")
+        return 0
+    return 1 if build() else 0
 
 
 if __name__ == "__main__":

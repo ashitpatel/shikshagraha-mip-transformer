@@ -1,0 +1,101 @@
+{
+  "id": "8-transition-class8-to-9-seed",
+  "classification": {
+    "owner_type": "HM",
+    "student_learning_experience": {
+      "present": true,
+      "where": [5],
+      "note": "Class 8 students visit the receiving secondary school and take part in an interactive session with its HM, teachers and students (task 5)"
+    },
+    "student_role": "participant",
+    "students_core": true,
+    "objective_is_learning": false,
+    "subject_teaching": false,
+    "foundational_literacy_numeracy": false,
+    "below_grade_level": "unknown",
+    "state_materials_in_use": "unknown",
+    "planning_only": false,
+    "protected_slot_feasible": "unknown",
+    "volunteers_available": "unknown",
+    "constituency": {
+      "present": true,
+      "who": "Class 8 students and their parents"
+    },
+    "shared_resource": {
+      "kind": "none",
+      "amount_confirmed": "unknown",
+      "amount": null,
+      "source": "unknown",
+      "choice_among_costed_items": false
+    },
+    "competing_options": {
+      "count": 0,
+      "decision_task_seq": null,
+      "note": "no task lists needs or options to choose between; task 4 plans a single visit"
+    },
+    "public_outcome": "families",
+    "already_present": {
+      "CL-interests": "none",
+      "CL-peers": "none",
+      "CL-relationships": "task 5: students meet the secondary school's HM, teachers and students in an interactive session",
+      "CL-opportunities": "task 5: introduces students to the next academic stage (Class 9 at the secondary school)",
+      "CL-production": "none",
+      "CL-shared-purpose": "none",
+      "CL-connections-across-settings": "tasks 3, 6: parents are informed about the visit and give feedback",
+      "CL-audience": "none",
+      "CL-asset-map": "none",
+      "CL-brokering": "none",
+      "CL-transitions": "tasks 1-5: the whole MIP is a visit by Class 8 students to the receiving secondary school",
+      "PB-ideas": "none",
+      "PB-prioritise": "none",
+      "PB-vetting": "none",
+      "PB-report-back": "none",
+      "EB-level-grouping": "none",
+      "EB-tutoring": "none",
+      "EB-akshara": "none",
+      "EB-fidelity-loop": "none",
+      "EB-measure": "none"
+    },
+    "risk_flags": ["off-site visit: students travel to another school and meet its adults"],
+    "transition_year": "Class 8→9",
+    "size": { "duration_weeks": 1, "task_count": 6 }
+  },
+  "gate_cl": {
+    "connected_learning": {
+      "decision": "APPLY",
+      "reason": "HM-owned MIP whose main activity is students' own transition visit (students_core true), so CL-scope continues. Transitions and relationships are already strong; real gaps with feasible edits are student choice, something students make, and a concrete next opportunity after the visit.",
+      "cards": ["CL-interests", "CL-production", "CL-brokering"]
+    },
+    "credit": [
+      "CL-transitions: tasks 1-5 already a visit by Class 8 students to the receiving secondary school",
+      "CL-relationships: task 5 already an interactive session with the secondary school's HM, teachers and students",
+      "CL-connections-across-settings: tasks 3 and 6 already involve parents",
+      "CL-opportunities: task 5 already introduces the next academic stage"
+    ],
+    "constraints": ["offline (CL-G4)", "keep the objective (CL-G1)", "map assets, never children (CL-G9) for any brokering list"],
+    "relevant_guardrails": ["CL-G5", "CL-G6", "CL-G7", "CL-G9"]
+  },
+  "gate_pb": {
+    "pb_process": { "decision": "ABSTAIN", "reason": "A constituency (students and parents) exists but there is no shared resource (shared_resource.kind = none).", "cards": ["PB-scope"] },
+    "pb_prioritise": { "decision": "ABSTAIN", "reason": "competing_options.count = 0; no task generates several needs or options to choose between.", "cards": ["PB-prioritise"] },
+    "pb_allocate": { "decision": "ABSTAIN", "reason": "Neither pb_process nor pb_prioritise is APPLY, so there is no group to vote; also no costed items or confirmed amount.", "cards": ["PB-allocate-knapsack", "PB-count-greedy"], "condition": "" },
+    "budget_capped_choice": { "decision": "ABSTAIN", "reason": "No hard cap with more options than fit; the MIP plans a single visit.", "cards": ["PB-not-pb"] },
+    "credit": [],
+    "constraints": [],
+    "relevant_guardrails": []
+  },
+  "gate_eb": {
+    "evidence_based": {
+      "decision": "ABSTAIN",
+      "reason": "Not foundational literacy/numeracy and below_grade_level is not 'yes'; not subject teaching, no Tier 2 card fits, and it is not planning-only with a learning objective. It is a transition/engagement visit.",
+      "cards": [],
+      "tier": null,
+      "condition": ""
+    },
+    "open_questions": [],
+    "credit": [],
+    "non_negotiables_missing": [],
+    "constraints": [],
+    "relevant_guardrails": []
+  }
+}

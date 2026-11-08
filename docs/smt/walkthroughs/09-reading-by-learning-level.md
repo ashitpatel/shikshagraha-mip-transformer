@@ -1,6 +1,6 @@
 # Walkthrough 9 — "Reading English", taught by learning level
 
-> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), sheet *Cur & Ped & Ass*, "Reading English", a real catalogue MIP. The school context (Class 4–5, many non-readers, an HM willing to protect a period) is assumed for this example. Technical version: [evals/golden/catalogue-reading-by-level.md](../../evals/golden/catalogue-reading-by-level.md).
+> A **reference answer** written by hand, not tool output. Source: ShikshaLokam's *Domain-wise Micro Improvements Framework* (Commons #259), sheet *Cur & Ped & Ass*, "Reading English", a real catalogue MIP. The school context (Class 4–5, many non-readers, an HM willing to protect a period) is assumed for this example. Technical version: [evals/golden/catalogue-reading-by-level.md](../../../evals/golden/catalogue-reading-by-level.md).
 
 | | |
 |---|---|

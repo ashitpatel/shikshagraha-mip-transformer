@@ -23,8 +23,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PROMPTS = ROOT / "prompts"
-FRAMEWORKS = ROOT / "frameworks"
+PROMPTS = ROOT / "prompts" / "smt"
+FRAMEWORKS = ROOT / "frameworks" / "smt"
 FIXTURES = ROOT / "evals" / "gate_fixtures.json"
 RUNS = ROOT / "evals" / "runs"
 
