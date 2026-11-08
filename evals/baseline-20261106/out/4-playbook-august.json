@@ -1,0 +1,103 @@
+{
+  "id": "4-playbook-august",
+  "classification": {
+    "owner_type": "teacher",
+    "student_learning_experience": {
+      "present": true,
+      "where": [2, 3, 4, 5],
+      "note": "students do the Dream Job Map (task 2), explore the neighbourhood (task 3), contribute findings to the Learning Wall (task 4) and talk with a local expert (task 5)"
+    },
+    "student_role": "participant",
+    "students_core": true,
+    "objective_is_learning": false,
+    "subject_teaching": false,
+    "foundational_literacy_numeracy": false,
+    "below_grade_level": "unknown",
+    "state_materials_in_use": "unknown",
+    "planning_only": false,
+    "protected_slot_feasible": "unknown",
+    "volunteers_available": "unknown",
+    "constituency": {
+      "present": false,
+      "who": "none"
+    },
+    "shared_resource": {
+      "kind": "none",
+      "amount_confirmed": "unknown",
+      "amount": null,
+      "source": "unknown",
+      "choice_among_costed_items": false
+    },
+    "competing_options": {
+      "count": 0,
+      "decision_task_seq": null,
+      "note": "no task lists needs or options to choose between; task 1 is routine material preparation"
+    },
+    "public_outcome": "within_school",
+    "already_present": {
+      "CL-interests": "task 2: Dream Job Map lets each student pick and represent their own dream job",
+      "CL-peers": "none",
+      "CL-relationships": "task 5: a local expert talks with students",
+      "CL-opportunities": "task 2: Dream Job Map links students to career awareness; task 5 expert talk",
+      "CL-production": "tasks 2 and 4: Dream Job Gallery and Neighbourhood Learning Wall built from student work and findings",
+      "CL-shared-purpose": "none",
+      "CL-connections-across-settings": "tasks 3-4: Neighbourhood Explorer brings neighbourhood findings into the Learning Centre",
+      "CL-audience": "tasks 2 and 4: work displayed in the Learning Centre (gallery, wall); no audience beyond it stated",
+      "CL-asset-map": "tasks 3-4: Neighbourhood Explorer and Neighbourhood Learning Wall",
+      "CL-brokering": "none",
+      "CL-transitions": "none",
+      "PB-ideas": "none",
+      "PB-prioritise": "none",
+      "PB-vetting": "none",
+      "PB-report-back": "none",
+      "EB-level-grouping": "none",
+      "EB-tutoring": "none",
+      "EB-akshara": "none",
+      "EB-fidelity-loop": "none",
+      "EB-measure": "none"
+    },
+    "risk_flags": ["adult visitors"],
+    "transition_year": "unknown",
+    "size": { "duration_weeks": 4, "task_count": 6 }
+  },
+  "gate_cl": {
+    "connected_learning": {
+      "decision": "APPLY",
+      "reason": "A teacher-owned Learning Centre MIP whose main activity is students' learning experience (tasks 2-5), so CL-scope is APPLY. Students already connect to the neighbourhood and careers, but nothing leads to a next opportunity, there is no peer collaboration, and work is seen only inside the centre.",
+      "cards": ["CL-brokering", "CL-peers", "CL-audience"]
+    },
+    "credit": [
+      "CL-interests: task 2 Dream Job Map lets each student choose their dream job",
+      "CL-relationships: task 5 local expert talks with students",
+      "CL-opportunities: task 2 Dream Job Map links to career awareness",
+      "CL-production: tasks 2 and 4 Dream Job Gallery and Neighbourhood Learning Wall from student findings",
+      "CL-connections-across-settings: tasks 3-4 Neighbourhood Explorer",
+      "CL-asset-map: tasks 3-4 Neighbourhood Explorer and Learning Wall (credit first; don't duplicate)"
+    ],
+    "constraints": [],
+    "relevant_guardrails": ["CL-G5", "CL-G6", "CL-G9"]
+  },
+  "gate_pb": {
+    "pb_process": { "decision": "ABSTAIN", "reason": "No constituency and no shared resource (shared_resource.kind = none).", "cards": ["PB-scope"] },
+    "pb_prioritise": { "decision": "ABSTAIN", "reason": "competing_options.count = 0 and no task generates several needs or options for a collective decision.", "cards": ["PB-prioritise"] },
+    "pb_allocate": { "decision": "ABSTAIN", "reason": "Neither pb_process nor pb_prioritise is APPLY, so no group votes; no costed choice either.", "cards": ["PB-allocate-knapsack", "PB-count-greedy"], "condition": "" },
+    "budget_capped_choice": { "decision": "ABSTAIN", "reason": "No hard cap with more options than fit.", "cards": ["PB-not-pb"] },
+    "credit": [],
+    "constraints": [],
+    "relevant_guardrails": []
+  },
+  "gate_eb": {
+    "evidence_based": {
+      "decision": "ABSTAIN",
+      "reason": "Not foundational and below_grade_level is not 'yes', so step 1 does not trigger; no regular subject teaching for a Tier 2 card and not planning-only. It is an engagement and career-awareness MIP (step 4).",
+      "cards": [],
+      "tier": null,
+      "condition": ""
+    },
+    "open_questions": [],
+    "credit": [],
+    "non_negotiables_missing": [],
+    "constraints": [],
+    "relevant_guardrails": []
+  }
+}

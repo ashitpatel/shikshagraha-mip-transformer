@@ -1,0 +1,114 @@
+{
+  "id": "15-catalogue-teacher-mela",
+  "classification": {
+    "owner_type": "HM",
+    "student_learning_experience": {
+      "present": false,
+      "where": [],
+      "note": "all tasks involve teachers only (survey, meeting, activities, logistics, mela, feedback, documentation); no student activity"
+    },
+    "student_role": "none",
+    "students_core": false,
+    "objective_is_learning": false,
+    "subject_teaching": false,
+    "foundational_literacy_numeracy": false,
+    "below_grade_level": "unknown",
+    "state_materials_in_use": "unknown",
+    "planning_only": false,
+    "protected_slot_feasible": "unknown",
+    "volunteers_available": "unknown",
+    "constituency": {
+      "present": false,
+      "who": "none (teachers deciding about their own staff-engagement event)",
+      "collective_decision": false
+    },
+    "shared_resource": {
+      "kind": "none",
+      "amount_confirmed": "unknown",
+      "amount": null,
+      "source": "unknown",
+      "choice_among_costed_items": false
+    },
+    "competing_options": {
+      "count": 0,
+      "decision_task_seq": 3,
+      "note": "task 3 lists mela activities (informed by task 1 survey and task 2 meeting); a staff team choosing activities for its own event; no costs or cap stated"
+    },
+    "public_outcome": "within_school",
+    "already_present": {
+      "CL-interests": "none",
+      "CL-peers": "none",
+      "CL-relationships": "none",
+      "CL-opportunities": "none",
+      "CL-production": "none",
+      "CL-shared-purpose": "none",
+      "CL-connections-across-settings": "none",
+      "CL-audience": "none",
+      "CL-asset-map": "none",
+      "CL-brokering": "none",
+      "CL-transitions": "none",
+      "PB-ideas": "none",
+      "PB-prioritise": "none",
+      "PB-vetting": "none",
+      "PB-report-back": "none",
+      "EB-level-grouping": "none",
+      "EB-tutoring": "none",
+      "EB-akshara": "none",
+      "EB-fidelity-loop": "none",
+      "EB-measure": "none"
+    },
+    "risk_flags": [],
+    "transition_year": "none",
+    "size": { "duration_weeks": 2, "task_count": 9 }
+  },
+  "gate_cl": {
+    "connected_learning": {
+      "decision": "ABSTAIN",
+      "reason": "CL-scope: student_learning_experience.present is false; this is an HM-owned HR/staff-recognition event for teachers. Treating teachers as the learners would be an extension, not Connected Learning.",
+      "cards": ["CL-scope"]
+    },
+    "credit": [],
+    "constraints": [],
+    "relevant_guardrails": []
+  },
+  "gate_pb": {
+    "pb_process": {
+      "decision": "ABSTAIN",
+      "reason": "No constituency and shared_resource.kind is none; a staff team planning its own event is not PB.",
+      "cards": ["PB-scope"]
+    },
+    "pb_prioritise": {
+      "decision": "ABSTAIN",
+      "reason": "Task 3 generates activity options, but the decision is a staff group's choice about its own event, so it is not legitimately collective (collective_decision false).",
+      "cards": ["PB-prioritise"]
+    },
+    "pb_allocate": {
+      "decision": "ABSTAIN",
+      "reason": "Neither pb_process nor pb_prioritise is APPLY, so no group votes; mela logistics are event costs, not a choice among costed items.",
+      "cards": ["PB-allocate-knapsack"],
+      "condition": ""
+    },
+    "budget_capped_choice": {
+      "decision": "ABSTAIN",
+      "reason": "No hard cap (hours or money) is stated against which the listed activities exceed what fits.",
+      "cards": ["PB-not-pb"]
+    },
+    "credit": [],
+    "constraints": [],
+    "relevant_guardrails": []
+  },
+  "gate_eb": {
+    "evidence_based": {
+      "decision": "ABSTAIN",
+      "reason": "Not foundational, not about children behind grade level or teaching practice, not subject teaching, and not planning-only with a learning objective; it is an HR/staff-engagement event (step 4).",
+      "cards": [],
+      "tier": null,
+      "condition": ""
+    },
+    "open_questions": [],
+    "credit": [],
+    "non_negotiables_missing": [],
+    "constraints": [],
+    "relevant_guardrails": []
+  }
+}

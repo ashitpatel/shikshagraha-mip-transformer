@@ -1,0 +1,126 @@
+{
+  "id": "5-sdp-process",
+  "classification": {
+    "owner_type": "HM",
+    "student_learning_experience": {
+      "present": false,
+      "where": [],
+      "note": "students appear only as consulted stakeholders in the needs meeting/survey (task 1) and the review meeting (task 5); no student learning activity"
+    },
+    "student_role": "participant",
+    "students_core": false,
+    "objective_is_learning": true,
+    "subject_teaching": false,
+    "foundational_literacy_numeracy": false,
+    "below_grade_level": "unknown",
+    "state_materials_in_use": "unknown",
+    "planning_only": true,
+    "protected_slot_feasible": "unknown",
+    "volunteers_available": "unknown",
+    "constituency": {
+      "present": true,
+      "who": "SMC members (with teachers and students consulted in tasks 1 and 5)",
+      "collective_decision": true
+    },
+    "shared_resource": {
+      "kind": "money",
+      "amount_confirmed": "unknown",
+      "amount": null,
+      "source": "unknown",
+      "choice_among_costed_items": true
+    },
+    "competing_options": {
+      "count": 6,
+      "decision_task_seq": 4,
+      "note": "task 3 analyses needs across six areas (enrolment, learning outcomes, leadership, stakeholder involvement, teaching practice, resources); task 4 drafts the plan; no step says how needs are prioritised"
+    },
+    "public_outcome": "within_school",
+    "already_present": {
+      "CL-interests": "none",
+      "CL-peers": "none",
+      "CL-relationships": "none",
+      "CL-opportunities": "none",
+      "CL-production": "none",
+      "CL-shared-purpose": "none",
+      "CL-connections-across-settings": "none",
+      "CL-audience": "none",
+      "CL-asset-map": "none",
+      "CL-brokering": "none",
+      "CL-transitions": "none",
+      "PB-ideas": "tasks 1 and 3: meeting or survey with teachers, SMC members and students on school needs, then a needs analysis across six areas",
+      "PB-prioritise": "none",
+      "PB-vetting": "none",
+      "PB-report-back": "task 6: monthly updates to teachers and SMC, quarterly progress monitoring",
+      "EB-level-grouping": "none",
+      "EB-tutoring": "none",
+      "EB-akshara": "none",
+      "EB-fidelity-loop": "none",
+      "EB-measure": "none"
+    },
+    "risk_flags": [],
+    "transition_year": "none",
+    "size": { "duration_weeks": 4, "task_count": 6 }
+  },
+  "gate_cl": {
+    "connected_learning": {
+      "decision": "ABSTAIN",
+      "reason": "student_learning_experience.present is false: this is an HM/SMC SDP-drafting (governance) MIP in which students are only consulted, so CL-scope abstains. Community and SMC participation here is participatory governance, left to the PB gate.",
+      "cards": []
+    },
+    "credit": [],
+    "constraints": [],
+    "relevant_guardrails": []
+  },
+  "gate_pb": {
+    "pb_process": {
+      "decision": "APPLY",
+      "reason": "Constituency present (SMC, with teachers and students) and the shared resource is money for SDP actions; the public outcome is met by task 6's updates plus the added report-back task.",
+      "cards": ["PB-scope"]
+    },
+    "pb_prioritise": {
+      "decision": "APPLY",
+      "reason": "Task 3 generates six competing need areas, and choosing among competing school needs in the SDP is legitimately collective (the SMC under the RTE Act), though no step says how they are prioritised.",
+      "cards": ["PB-prioritise"]
+    },
+    "pb_allocate": {
+      "decision": "CONDITIONAL",
+      "reason": "A group decides (pb_process and pb_prioritise APPLY) and the SDP chooses among costed actions (task 4 'resources needed'), but no amount is confirmed.",
+      "cards": ["PB-allocate-knapsack", "PB-count-greedy"],
+      "condition": "Is a discretionary (non-earmarked) amount confirmed, how much, and from what source?"
+    },
+    "budget_capped_choice": {
+      "decision": "ABSTAIN",
+      "reason": "pb_process is APPLY, so knapsack reasoning without the PB label does not apply.",
+      "cards": ["PB-not-pb"]
+    },
+    "credit": [
+      "PB-ideas: tasks 1 and 3 already collect and analyse school needs with teachers, SMC members and students",
+      "PB-report-back: task 6 already updates teachers and SMC monthly and monitors quarterly"
+    ],
+    "constraints": [
+      "ballots are advisory to SMC agreement (PB-G5)",
+      "student voice is an addition to SMC practice; label it as such"
+    ],
+    "relevant_guardrails": ["PB-G1", "PB-G2", "PB-G4", "PB-G5", "PB-G6", "PB-G7"]
+  },
+  "gate_eb": {
+    "evidence_based": {
+      "decision": "PARTIAL",
+      "reason": "Not foundational, below-grade status not confirmed as yes, no teaching-practice or subject-teaching focus, so steps 1-2 do not fire; the MIP is planning_only with a learning objective (an SDP to improve teaching and learning), so EB-plan-to-routine applies.",
+      "cards": ["EB-plan-to-routine"],
+      "tier": null,
+      "condition": ""
+    },
+    "open_questions": [],
+    "credit": [],
+    "non_negotiables_missing": [
+      "a task that turns the plan's top priority into a classroom-facing routine (or records a Tier 1 routine as a follow-on MIP with all its non-negotiables)"
+    ],
+    "constraints": [
+      "never add a hollow Tier 1 practice; include all non-negotiables or record a follow-on MIP",
+      "if PB applies, restrict ballot options to evidence-based practices and the materials they need",
+      "tie each planned purchase to the routine that will use it"
+    ],
+    "relevant_guardrails": ["EB-G1", "EB-G5", "EB-G6", "EB-G7"]
+  }
+}

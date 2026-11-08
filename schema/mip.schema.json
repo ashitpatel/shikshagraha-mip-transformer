@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/shikshagraha-mip-transformer/mip.schema.json",
+  "title": "Micro-Improvement Project (MIP)",
+  "description": "Mirrors the column structure of ShikshaLokam's 'Domain-wise Micro Improvements (MIs) Framework' (Shikshagraha Commons, resource 259), the de facto MIP plan format. Fields under 'x_transform' are additions made by this project and are not part of the source format. Size limits are taken from the catalogue: 99 MIPs, mostly 2 weeks to 1 month, with 5-7 tasks.",
+  "type": "object",
+  "required": ["title", "domain", "target_stakeholder", "duration", "objective", "tasks"],
+  "properties": {
+    "title": { "type": "string", "description": "TITLE OF THE PROJECT" },
+    "domain": {
+      "type": "string",
+      "description": "Sheet / SQAA domain",
+      "enum": [
+        "Access & Infrastructure",
+        "Curriculum, Pedagogy & Assessment",
+        "Human Resource",
+        "Inclusive Practices",
+        "Management & Governance",
+        "Beneficiary Satisfaction"
+      ]
+    },
+    "sub_category": { "type": "string", "description": "Sub-category / Category column, e.g. 'Physical Infrastructure', 'Parent Engagement'" },
+    "contributed_by": { "type": "string", "description": "e.g. 'Mantra4Change & ShikshaLokam'" },
+    "project_template_link": { "type": "string", "format": "uri" },
+    "target_stakeholder": {
+      "type": "string",
+      "description": "The MIP owner who executes it. In the catalogue: HM/HT/school leader (~60%), teachers (~27%), plus SMC, CRP, DIET/BEO. Never students; student roles go in task-level roles."
+    },
+    "duration": {
+      "type": "string",
+      "description": "Free text in the source ('2 weeks', '1 month'). Mode is 1 month; observed max is 2 months.",
+      "examples": ["1 week", "2 weeks", "1 month", "2 months"]
+    },
+    "description": { "type": "string" },
+    "objective": { "type": "string" },
+    "project_learning_resources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/resource" },
+      "description": "PROJECT LEVEL LEARNING RESOURCE (+ editable link). Often hosted on bodh.shikshalokam.org."
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "description": "Ordered tasks. Catalogue observed: typically 5-7, max 12.",
+      "items": {
+        "type": "object",
+        "required": ["seq", "name"],
+        "properties": {
+          "seq": { "type": "integer", "minimum": 1 },
+          "name": { "type": "string", "description": "TASK NAME" },
+          "sub_tasks": { "type": "array", "items": { "type": "string" } },
+          "learning_resources": { "type": "array", "items": { "$ref": "#/$defs/resource" } },
+          "x_transform": { "$ref": "#/$defs/task_transform" }
+        }
+      }
+    },
+    "x_transform": {
+      "type": "object",
+      "description": "Added by the transformer; not in the source format.",
+      "properties": {
+        "source_ref": { "type": "string", "description": "Catalogue sheet + row or Commons resource id of the original MIP" },
+        "variant_id": {
+          "type": "string",
+          "pattern": "^v1:[0-9a-f]{16}$",
+          "description": "Assigned by the orchestrator, never by a model: 'v1:' + the first 16 hex chars of SHA-256 over the canonical JSON of this MIP with x_transform.variant_id, parent_variant_id and pipeline removed (keys sorted, UTF-8, no whitespace). The same content always gets the same id."
+        },
+        "parent_variant_id": {
+          "type": "string",
+          "pattern": "^v1:[0-9a-f]{16}$",
+          "description": "variant_id of the baseline this variant was transformed from. Absent on baselines."
+        },
+        "variant_kind": { "enum": ["baseline", "transformed", "seed"], "description": "seed = authored by this project, not sourced" },
+        "pipeline": {
+          "type": "object",
+          "description": "What produced this variant, so outcomes can be traced to prompt and card versions",
+          "properties": {
+            "model": { "type": "string" },
+            "effort": { "type": "string" },
+            "prompt_hashes": { "type": "object", "additionalProperties": { "type": "string" }, "description": "prompt file name -> first 12 hex chars of its SHA-256" },
+            "cards_hash": { "type": "string" },
+            "critic_verdict": { "enum": ["PASS", "REVISE", "REJECT"] },
+            "revisions": { "type": "integer", "minimum": 0 },
+            "created_at": { "type": "string", "format": "date-time" }
+          }
+        },
+        "gates": {
+          "type": "object",
+          "required": ["connected_learning", "pb_process", "pb_prioritise", "pb_allocate", "budget_capped_choice"],
+          "properties": {
+            "connected_learning": { "$ref": "#/$defs/gate", "description": "Card CL-scope" },
+            "pb_process": { "$ref": "#/$defs/gate", "description": "Card PB-scope: may the work be labelled participatory budgeting at all?" },
+            "pb_prioritise": { "$ref": "#/$defs/gate", "description": "Card PB-prioritise: approval/ranked ballot on needs or options" },
+            "pb_allocate": { "$ref": "#/$defs/gate", "description": "Card PB-allocate-knapsack: CONDITIONAL when the amount is unconfirmed" },
+            "budget_capped_choice": { "$ref": "#/$defs/gate", "description": "Card PB-not-pb: knapsack reasoning without the PB label" },
+            "evidence_based": { "$ref": "#/$defs/gate", "description": "Card EB-scope: Tier 1 evidence-based practices (optional for variants produced before this gate existed)" }
+          }
+        },
+        "already_present": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "What the original already does that each framework values; must be filled before any additions are proposed"
+        },
+        "cost": { "type": "string", "description": "\"nil\" (existing school materials only), an amount stated in the MIP or a confirmed allocation, or \"not stated\". Never a guess." },
+        "constraint": {
+          "type": "object",
+          "description": "Only when a budget-capped choice applies",
+          "properties": {
+            "kind": { "enum": ["money_inr", "time_hours", "other"] },
+            "amount": { "type": "number" },
+            "source": { "type": "string", "description": "e.g. untied composite grant headroom, SMC-raised funds, CSR. Must be confirmed by the owner." }
+          }
+        },
+        "success_indicators": { "type": "array", "items": { "type": "string" } },
+        "guardrails": { "type": "array", "items": { "type": "string" } },
+        "rationale": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim", "basis"],
+            "properties": {
+              "claim": { "type": "string" },
+              "basis": { "type": "string", "description": "Reference-card id or citation. Unsourced numbers are rejected." }
+            }
+          }
+        },
+        "attribution": { "type": "string", "description": "Credit line for the original org and Shikshagraha Commons" }
+      }
+    }
+  },
+  "$defs": {
+    "resource": {
+      "type": "object",
+      "properties": { "name": { "type": "string" }, "url": { "type": "string" } }
+    },
+    "gate": {
+      "type": "object",
+      "required": ["decision", "reason"],
+      "properties": {
+        "decision": { "enum": ["APPLY", "PARTIAL", "CONDITIONAL", "ABSTAIN"] },
+        "reason": { "type": "string" },
+        "cards": { "type": "array", "items": { "type": "string", "pattern": "^(CL|PB|EB)-[a-z-]+$" } },
+        "condition": { "type": "string", "description": "For CONDITIONAL: the question the MIP owner must answer, e.g. 'Is a discretionary amount confirmed, and how much?'" },
+        "tier": { "enum": [1, 2, null], "description": "Evidence-based gate only: 1 = Tier 1 practice, 2 = Tier 2 pilot, null = EB-plan-to-routine (a rule, not a practice)" },
+        "deferred": { "type": "boolean", "description": "True if the gate applied but the transformer couldn't fit the method within the size limits (recorded as a follow-on idea)" }
+      }
+    },
+    "task_transform": {
+      "type": "object",
+      "properties": {
+        "change": { "enum": ["unchanged", "modified", "added"] },
+        "principle": { "type": "string", "description": "CL principle or PB technique this change serves" },
+        "student_role": { "type": "string" },
+        "artefact": { "type": "string" },
+        "guardrail": { "type": "string" }
+      }
+    }
+  },
+  "x_limits": {
+    "description": "Hard limits the critic enforces on a transformed MIP; the transformer suggests splitting into chained MIPs instead of exceeding them",
+    "max_duration_weeks": 8,
+    "max_tasks": 9,
+    "max_added_tasks": 2,
+    "new_paid_inputs": "only if the gate found a real, confirmed budget"
+  }
+}
